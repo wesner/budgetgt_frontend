@@ -1,0 +1,10 @@
+.container{ 
+     display: flex; 
+     height: 100vh;
+}
+.row{
+     width: 100%;
+     display: 1;
+     margin-top: auto;
+     margin-bottom: auto;
+}

@@ -23,9 +23,17 @@
               "src/assets"
             ],
             "styles": [
+              "src/bootstrap-4-1-1/css/bootstrap.css",
+              "src/bootstrap-4-1-1/budget/budgetgt.css",
               "src/styles.css"
+              
+
             ],
-            "scripts": []
+            "scripts": [
+              "src/bootstrap-4-1-1/jquery-3.3.1.min.js",
+              "src/bootstrap-4-1-1/js/bootstrap.min.js",
+              "src/bootstrap-4-1-1/budget/budgetgt.min.js"
+            ]
           },
           "configurations": {
             "production": {
