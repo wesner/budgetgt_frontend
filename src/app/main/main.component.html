@@ -100,18 +100,36 @@
 </nav>
 
 <div class="main-content">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" (click)="leftBar()"><span class="navbar-toggler-icon"></span></a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active"> <a class="nav-link" href="#">Opción <span class="sr-only">(current)</span></a> </li>
-          </ul>
-        </div>
-        
-        <ul class="nav justify-content-end">
-          <li class="nav-item"> Nombre del Usuario </li>
-        </ul>  
-    </nav>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark container-fluid">
+          <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item"> <a class="nav-link text-success" href="#" title="Agregar nuevo ingreso al presupuesto actual"><i class="icon ion-ios-add-circle"></i>  Ingreso </a> </li>
+                <li class="nav-item"> <a class="nav-link text-danger" href="#" title="Agregar nuevo egreso al presupuesto actual"><i class="icon ion-ios-add-circle"></i>  Egreso </a> </li>
+                <li class="nav-item"> <a class="nav-link " href="#" title="Agregar nuevo egreso al presupuesto actual"><i class="icon ion-ios-add-circle"></i>  Tarjeta de Crédito </a> </li>
+                <li class="nav-item"> <a class="nav-link " href="#" title="Agregar nuevo egreso al presupuesto actual"><i class="icon ion-ios-add-circle"></i>  Deuda </a> </li>
+              </ul>
+            </div>
+
+
+            <div class="navbar-user">
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="icon ion-ios-person"></i> Wesner Che &nbsp; <i class="icon ion-ios-arrow-down"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#"><i class="icon ion-ios-person"></i> Ver Perfil</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-danger" href="#"> <i class="icon ion-ios-power"></i> Cerrar Sesión</a>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </nav>
+
+
+
+      
 
     <router-outlet></router-outlet>
 </div>

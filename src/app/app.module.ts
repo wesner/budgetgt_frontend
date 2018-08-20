@@ -15,7 +15,7 @@ import { AppRoutingModule } from './router/app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
-import { GeneralComponent } from './general/general.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 /* Configuración de firebase */
 export const firebaseConfig = {
@@ -32,7 +32,7 @@ export const firebaseConfig = {
     AppComponent,
     LoginComponent,
     MainComponent,
-    GeneralComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

@@ -8855,10 +8855,10 @@
      padding: 0
  }
  .dropdown-toggle:after {
-     font-family: Feather;
+     font-family: Ionicons;
      width: auto;
      height: auto;
-     content: "\e92e";
+     content: "\f3d0";
      vertical-align: middle;
      border: none!important
  }

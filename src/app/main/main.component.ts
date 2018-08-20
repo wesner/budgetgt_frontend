@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 declare var $: any;
-declare var jquery: any;
 
 @Component({
   selector: 'app-main',
@@ -14,7 +13,7 @@ export class MainComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(){
   }
 
 
