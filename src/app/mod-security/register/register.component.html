@@ -1,0 +1,102 @@
+<div class="container-fluid bg-white">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6 col-xl-6 my-5">
+        <h1 class="text-center mb-3 display-4">Registro</h1>
+        <p class="text-muted text-center mb-5">Crear una cuenta en BudgetGT</p>
+        
+        <form [formGroup]="formRegister" (submit)="formRegisterSubmit()">
+          <div class="form-row">
+              <div class="form-group required col-md-6">
+              <label>Nombre (s)</label>
+              <input type="text" formControlName="firstName" class="form-control" [class.is-invalid]="_util.getError(formRegister.controls.firstName)" placeholder="Ingresa tu nombre(s)">
+              <message-error [control]="formRegister.controls.firstName" ></message-error>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Apellido (s)</label>
+              <input type="text" formControlName="lastName" class="form-control" [class.is-invalid]="_util.getError(formRegister.controls.lastName)" placeholder="Ingresa tu apellido(s)">
+              <message-error [control]="formRegister.controls.lastName" ></message-error>
+            </div>
+          </div>
+
+          <div class="form-group required">
+            <label>Correo electronico</label>
+            <input type="text" formControlName="email" class="form-control" [class.is-invalid]="_util.getError(formRegister.controls.email)" placeholder="nombre@dominio.com">
+            <message-error [control]="formRegister.controls.email" ></message-error>
+          </div>          
+
+          <div class="form-row">
+            <div class="form-group required col-md-6">
+              <div class="row">
+                <div class="col">
+                  <label>Clave</label>
+                </div>
+              </div>
+
+              <div class="input-group input-group-merge">
+                <input [type]="viewPassword ? 'text' : 'password'" formControlName="firstPassword" class="form-control form-control-appended" [class.is-invalid]="_util.getError(formRegister.controls.firstPassword)" placeholder="Ingresa tu clave">
+                <div class="input-group-append">
+                  <span class="input-group-text">
+                    <i (click)="viewPassword ? viewPassword=false : viewPassword=true" [class]="viewPassword ? 'fa fa-eye-slash hover' : 'fa fa-eye hover'"></i>
+                  </span>
+                </div>
+              </div>
+              <message-error [control]="formRegister.controls.firstPassword" ></message-error>
+              <small class="form-text text-muted">
+                Tu clave debe tener entre 8-20 caractres de largo, no puede contener espacios en blanco o emojis.
+              </small>
+            </div>
+          
+            <div class="form-group required col-md-6">
+                <div class="row">
+                  <div class="col">
+                    <label>Confirma tu clave</label>
+                  </div>
+                </div>
+    
+                <div class="input-group input-group-merge">
+                  <input [type]="viewPassword ? 'text' : 'password' " formControlName="confimationPassword" class="form-control form-control-appended" [class.is-invalid]="_util.getError(formRegister.controls.confimationPassword)" placeholder="Ingresa tu clave">
+                  <div class="input-group-append">
+                    <span class="input-group-text">
+                      <i (click)="viewPassword ? viewPassword=false : viewPassword=true" [class]="viewPassword ? 'fa fa-eye-slash hover' : 'fa fa-eye hover'"></i>
+                    </span>
+                  </div>
+                </div>
+
+                <message-error [control]="formRegister.controls.confimationPassword" ></message-error>
+            </div>
+          </div>
+
+          <div class="form-group required">
+            <label >Pais</label>
+            <select class="form-control" formControlName="country" >
+              <option value="GT" selected>Guatemala</option>
+            </select>
+          </div>          
+
+          <div class="form-group required">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" formControlName="agreement" [class.is-invalid]="_util.getError(formRegister.controls.agreement)">
+              <label class="form-check-label" for="rememberSesion">
+                Acepto los terminos y condiciones
+              </label>
+            </div>
+            <message-error [control]="formRegister.controls.agreement" ></message-error>
+          </div>
+
+          <button class="btn btn-lg btn-block btn-primary mb-3" [disabled]="!formRegister.valid"> Crear cuenta </button>
+
+          <div class="text-center">
+            <small class="text-muted text-center">
+              ¿Tienes una cuenta? <a href="">Inicia sesión</a>.
+            </small>
+          </div>
+          <hr>
+          <p class="text-right">
+            <small class="text-muted">BudgetGT - 2018 </small>
+          </p>
+        </form>
+
+      </div>
+    </div>
+  </div>

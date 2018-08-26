@@ -1,10 +1,10 @@
-.container{ 
-     display: flex; 
-     height: 100vh;
+.container-fluid{ 
+     display: flex;
 }
 .row{
      width: 100%;
      display: 1;
      margin-top: auto;
      margin-bottom: auto;
+     margin-left: 0px;
 }

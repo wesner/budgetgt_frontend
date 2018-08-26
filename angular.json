@@ -23,16 +23,17 @@
               "src/assets"
             ],
             "styles": [
-              "src/bootstrap-4-1-1/css/bootstrap.css",
-              "src/bootstrap-4-1-1/budget/budgetgt.css",
+              "src/carbon/vendor/simple-line-icons/css/simple-line-icons.css",
+              "src/carbon/vendor/font-awesome/css/fontawesome-all.css",
+              "src/carbon/carbon.css",
               "src/styles.css"
-              
-
             ],
             "scripts": [
               "src/bootstrap-4-1-1/jquery-3.3.1.min.js",
               "src/bootstrap-4-1-1/js/bootstrap.min.js",
-              "src/bootstrap-4-1-1/budget/budgetgt.min.js"
+              "src/carbon/vendor/popper.js/popper.min.js",
+              "src/carbon/vendor/chart.js/chart.min.js",
+              "src/carbon/carbon.js"
             ]
           },
           "configurations": {

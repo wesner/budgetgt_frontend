@@ -1,0 +1,57 @@
+  <div class="container-fluid bg-white">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-5 col-xl-4 my-5">
+        <h1 class="text-center mb-3 display-4">Inicio de sesión</h1>
+        <p class="text-muted text-center mb-5">Ingreso a BudgetGT</p>
+        
+        <form>
+          <div class="form-group">
+            <label>Correo electronico</label>
+            <input type="email" class="form-control" placeholder="nombre@dominio.com">
+          </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col">
+                <label>Clave</label>
+              </div>
+              <div class="col-auto">
+                <a href="" class="form-text small text-muted"> ¿Olvidaste tu clave?</a>
+              </div>
+            </div>
+
+            <div class="input-group input-group-merge">
+              <input [type]="verClave ? 'text' : 'password' " class="form-control form-control-appended" placeholder="Ingresa tu clave">
+              <div class="input-group-append">
+                <span class="input-group-text">
+                  <i (click)="verClave ? verClave=false : verClave=true" [class]="verClave ? 'fa fa-eye-slash hover' : 'fa fa-eye hover'"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="rememberSesion">
+              <label class="form-check-label" for="rememberSesion">
+                Mantener iniciada mi sesión
+              </label>
+            </div>
+          </div>          
+
+          <button class="btn btn-lg btn-block btn-primary mb-3"> Ingresar </button>
+
+          <div class="text-center">
+            <small class="text-muted text-center">
+              ¿Aún no tienes cuenta? <a href="">Crea una, es gratis</a>.
+            </small>
+          </div>
+          <hr>
+          <p class="text-right">
+            <small class="text-muted">BudgetGT - 2018 </small>
+          </p>
+        </form>
+
+      </div>
+    </div>
+  </div>

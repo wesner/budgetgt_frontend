@@ -1,31 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FireServiceService } from './fire-service/fire-service.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
-/* Firebase */
-import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
-// import { FirebaseListObservable } from 'angularfire2/database';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireStorageModule } from 'angularfire2/storage';
+/* CDK Layout Media Query */
+import { LayoutModule } from '@angular/cdk/layout'
 
 /* Componentes */
 import { AppRoutingModule } from './router/app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './mod-security/login/login.component';
 import { MainComponent } from './main/main.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-
-/* Configuración de firebase */
-export const firebaseConfig = {
-  apiKey:           "AIzaSyDk3IDGI0KXdrbcpEZMjGVHBLdq5isuhHk",
-  authDomain:       "budgetgt-c273d.firebaseapp.com",
-  databaseURL:      "https://budgetgt-c273d.firebaseio.com",
-  projectId:        "budgetgt-c273d",
-  storageBucket:    "budgetgt-c273d.appspot.com",
-  messagingSenderId:"76465743337"
-};
+import { DashboardComponent } from './mod-dashboard/dashboard/dashboard.component';
+import { RegisterComponent } from './mod-security/register/register.component';
+import { FormValidationComponent } from './utilities/message-error/form-validation/form-validation.component';
+import { UtilService } from './utilities/util.service';
 
 @NgModule({
   declarations: [
@@ -33,17 +22,18 @@ export const firebaseConfig = {
     LoginComponent,
     MainComponent,
     DashboardComponent,
+    RegisterComponent,
+    FormValidationComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule,
-    AngularFireAuthModule,
-    AngularFirestoreModule,
-    AngularFireStorageModule
+    LayoutModule,
+    FormsModule, 
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [FireServiceService],
+  providers: [UtilService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

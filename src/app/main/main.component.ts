@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BreakpointObserver, BreakpointState, Breakpoints } from '@angular/cdk/layout';
 
 declare var $: any;
 
@@ -8,27 +9,41 @@ declare var $: any;
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  
+  text: string;
 
-  openLefBar: boolean = true;
-
-  constructor() { }
+  constructor(public beakpointObserver: BreakpointObserver){
+  }
 
   ngOnInit(){
+    // this.beakpointObserver.observe([Breakpoints.XSmall, Breakpoints.Tablet, Breakpoints.Web]).subscribe(x=>{ this.changeLayout(); });
+
   }
 
-
-
-  leftBar(){
-    if(this.openLefBar){
-      $('.left-bar, .content').removeClass('openBar');
-      $('.left-bar, .content').addClass('closeBar');
-      this.openLefBar = false;
+  changeLayout():void{
+    if(this.beakpointObserver.isMatched(Breakpoints.XSmall)){ /** Movil */
+      this.removeClass("content","", true);
+      this.addClass("content","movil");
     }
-    else{
-      $('.left-bar, .content').removeClass('closeBar');
-      $('.left-bar, .content').addClass('openBar');
-      this.openLefBar = true;
+    else if(this.beakpointObserver.isMatched(Breakpoints.Tablet)){ /** Tableta */
+      this.removeClass("content","", true);
+      this.addClass("content","tablet");
+    }
+    else if(this.beakpointObserver.isMatched(Breakpoints.Web)){ /** Web */
+      this.removeClass("content","", true);
+      this.addClass("content","web");
     }
   }
+
+  addClass(_selector:string, _class:string):void{
+    let content = document.getElementById(_selector);
+    content.classList.add(_class);
+  }
+  removeClass(_selector:string, _class:string, all?:boolean):void{
+    let content = document.getElementById(_selector);
+    if(all){ content.className = ""; }
+    else{ content.classList.remove(_class); }
+  }
+  
 
 }
