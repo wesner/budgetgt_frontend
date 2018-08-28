@@ -1,6 +1,6 @@
-<div class="container-fluid bg-white">
+<div class="container-fluid bg-white" id="divRegister-content">
     <div class="row justify-content-center">
-      <div class="col-12 col-md-6 col-xl-6 my-5">
+      <div class="col-12 col-md-6 col-xl-6 my-5" id="divRegister">
         <h1 class="text-center mb-3 display-4">Registro</h1>
         <p class="text-muted text-center mb-5">Crear una cuenta en BudgetGT</p>
         
@@ -23,7 +23,7 @@
             <label>Correo electronico</label>
             <input type="text" formControlName="email" class="form-control" [class.is-invalid]="_util.getError(formRegister.controls.email)" placeholder="nombre@dominio.com">
             <message-error [control]="formRegister.controls.email" ></message-error>
-          </div>          
+          </div>
 
           <div class="form-row">
             <div class="form-group required col-md-6">
@@ -55,15 +55,14 @@
                 </div>
     
                 <div class="input-group input-group-merge">
-                  <input [type]="viewPassword ? 'text' : 'password' " formControlName="confimationPassword" class="form-control form-control-appended" [class.is-invalid]="_util.getError(formRegister.controls.confimationPassword)" placeholder="Ingresa tu clave">
+                  <input [type]="viewPassword ? 'text' : 'password' " formControlName="confimationPassword" class="form-control form-control-appended" [class.is-invalid]="_util.getError(formRegister.controls.confimationPassword)" placeholder="Ingresa tu clave" (keyup)="vaidationPassword()">
                   <div class="input-group-append">
                     <span class="input-group-text">
                       <i (click)="viewPassword ? viewPassword=false : viewPassword=true" [class]="viewPassword ? 'fa fa-eye-slash hover' : 'fa fa-eye hover'"></i>
                     </span>
                   </div>
                 </div>
-
-                <message-error [control]="formRegister.controls.confimationPassword" ></message-error>
+                <div *ngIf="this.formRegister.controls.confimationPassword.getError('noMach')" class="invalid-feedback">Las claves no coinciden</div>
             </div>
           </div>
 
@@ -76,8 +75,8 @@
 
           <div class="form-group required">
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" formControlName="agreement" [class.is-invalid]="_util.getError(formRegister.controls.agreement)">
-              <label class="form-check-label" for="rememberSesion">
+              <input class="form-check-input" type="checkbox" id="agreement" formControlName="agreement" [class.is-invalid]="_util.getError(formRegister.controls.agreement)">
+              <label class="form-check-label" for="agreement">
                 Acepto los terminos y condiciones
               </label>
             </div>
@@ -88,7 +87,7 @@
 
           <div class="text-center">
             <small class="text-muted text-center">
-              ¿Tienes una cuenta? <a href="">Inicia sesión</a>.
+              ¿Tienes una cuenta? <a routerLink="/login">Inicia sesión</a>.
             </small>
           </div>
           <hr>

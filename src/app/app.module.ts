@@ -4,7 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 /* CDK Layout Media Query */
-import { LayoutModule } from '@angular/cdk/layout'
+import { LayoutModule } from '@angular/cdk/layout';
+
+/** Services */
+import { HttpService } from './services/http-service/http-service.service';
 
 /* Componentes */
 import { AppRoutingModule } from './router/app-routing.module';
@@ -15,6 +18,9 @@ import { DashboardComponent } from './mod-dashboard/dashboard/dashboard.componen
 import { RegisterComponent } from './mod-security/register/register.component';
 import { FormValidationComponent } from './utilities/message-error/form-validation/form-validation.component';
 import { UtilService } from './utilities/util.service';
+import { ResetPasswordComponent } from './mod-security/reset-password/reset-password.component';
+
+
 
 @NgModule({
   declarations: [
@@ -24,6 +30,7 @@ import { UtilService } from './utilities/util.service';
     DashboardComponent,
     RegisterComponent,
     FormValidationComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +40,7 @@ import { UtilService } from './utilities/util.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [UtilService],
+  providers: [UtilService, HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

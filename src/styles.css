@@ -9,5 +9,4 @@ form .required label::after{
      content: "*";
      color: #e63757;
      font-weight: bold;
-     font-size: 1.1rem;
 }
