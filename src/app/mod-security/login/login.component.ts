@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ValidationService } from '../../utilities/message-error/form-validation/service-form-validation';
 import { UtilService } from '../../utilities/util.service';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',

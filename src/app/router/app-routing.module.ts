@@ -8,12 +8,13 @@ import { ResetPasswordComponent } from '../mod-security/reset-password/reset-pas
 
 const routes: Routes = [
   // { path: '', redirectTo: '/inicio/panel', pathMatch: 'full' },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  // { path: '**', component: PageNotFoundComponent }
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'main', component: MainComponent, children:[
-    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     // { path: '**', redirectTo: 'dashboard' },
     { path: 'dashboard', component: DashboardComponent}
   ]}

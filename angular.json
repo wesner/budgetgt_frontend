@@ -33,7 +33,9 @@
               "src/bootstrap-4-1-1/js/bootstrap.min.js",
               "src/carbon/vendor/popper.js/popper.min.js",
               "src/carbon/vendor/chart.js/chart.min.js",
-              "src/carbon/carbon.js"
+              "src/carbon/carbon.js",
+              "src/CryptoJS-v3.1.2/_rollups/aes.js",
+              "src/CryptoJS-v3.1.2/_components/mode-ecb-min.js"
             ]
           },
           "configurations": {
