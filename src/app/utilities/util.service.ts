@@ -22,7 +22,7 @@ export class UtilService {
    * 
    * @param _data Recibe como parametro un array o un objeto y lo desencripta
    */
-  public decryptJSON(_data:Array<any>| Object):[] | Object{
+  public decryptJSON(_data:Array<any>| Object):any | Object{
     if(_data instanceof Array){
       for(let obj in _data){
         for(let det of _data[obj]){

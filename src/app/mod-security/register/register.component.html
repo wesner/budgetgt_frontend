@@ -1,26 +1,35 @@
 <div class="container-fluid bg-white" id="divRegister-content">
     <div class="row justify-content-center">
-      <div class="col-12 col-md-6 col-xl-6 my-5" id="divRegister">
+      <div class="col-12 col-md-9 col-xl-6 my-5" id="divRegister">
         <h1 class="text-center mb-3 display-4">Registro</h1>
         <p class="text-muted text-center mb-5">Crear una cuenta en BudgetGT</p>
         
         <form [formGroup]="formRegister" (submit)="formRegisterSubmit()">
           <div class="form-row">
               <div class="form-group required col-md-6">
-              <label>Nombre (s)</label>
-              <input type="text" formControlName="firstName" class="form-control" [class.is-invalid]="_util.getError(formRegister.controls.firstName)" placeholder="Ingresa tu nombre(s)">
-              <message-error [control]="formRegister.controls.firstName" ></message-error>
+              <label>
+                <i class="fa fa-info-circle _popover hover" title="Nombre (s)" data-content="Ingresa tu primer nombre o todos tus nombres."></i>
+                Nombre (s)
+              </label>
+              <input type="text" formControlName="first_name" class="form-control" [class.is-invalid]="_util.getError(formRegister.controls.first_name)" placeholder="Ingresa tu nombre(s)">
+              <message-error [control]="formRegister.controls.first_name" ></message-error>
             </div>
 
             <div class="form-group col-md-6">
-              <label>Apellido (s)</label>
-              <input type="text" formControlName="lastName" class="form-control" [class.is-invalid]="_util.getError(formRegister.controls.lastName)" placeholder="Ingresa tu apellido(s)">
-              <message-error [control]="formRegister.controls.lastName" ></message-error>
+              <label>
+                <i class="fa fa-info-circle _popover hover" title="Apellido (s)" data-content="Ingresa tu primer apellido o todos tus apellidos."></i>
+                Apellido (s)
+              </label>
+              <input type="text" formControlName="last_name" class="form-control" [class.is-invalid]="_util.getError(formRegister.controls.last_name)" placeholder="Ingresa tu apellido(s)">
+              <message-error [control]="formRegister.controls.last_name" ></message-error>
             </div>
           </div>
 
           <div class="form-group required">
-            <label>Correo electronico</label>
+            <label>
+                <i class="fa fa-info-circle _popover hover" title="E-mail" data-content="Está es la dirección de correo en la cual recibiras noticias, confirmaras tu cuenta y podras usar para recuperar tu clave en caso la olvides."></i>
+              Correo electronico
+            </label>
             <input type="text" formControlName="email" class="form-control" [class.is-invalid]="_util.getError(formRegister.controls.email)" placeholder="nombre@dominio.com">
             <message-error [control]="formRegister.controls.email" ></message-error>
           </div>
@@ -29,7 +38,10 @@
             <div class="form-group required col-md-6">
               <div class="row">
                 <div class="col">
-                  <label>Clave</label>
+                  <label>
+                    <i class="fa fa-info-circle _popover hover" title="Contraseña" data-content="Una contraseña segura es aquella que al menos tiene 8 caractes e incluye números, mayusculas y simbolos"></i>
+                    Clave
+                  </label>
                 </div>
               </div>
 
@@ -55,7 +67,7 @@
                 </div>
     
                 <div class="input-group input-group-merge">
-                  <input [type]="viewPassword ? 'text' : 'password' " formControlName="confimationPassword" class="form-control form-control-appended" [class.is-invalid]="_util.getError(formRegister.controls.confimationPassword)" placeholder="Ingresa tu clave" (keyup)="vaidationPassword()">
+                  <input [type]="viewPassword ? 'text' : 'password' " formControlName="confimationPassword" class="form-control form-control-appended" [class.is-invalid]="_util.getError(formRegister.controls.confimationPassword)" placeholder="Ingresa tu clave" (blur)="vaidationPassword()">
                   <div class="input-group-append">
                     <span class="input-group-text">
                       <i (click)="viewPassword ? viewPassword=false : viewPassword=true" [class]="viewPassword ? 'fa fa-eye-slash hover' : 'fa fa-eye hover'"></i>
@@ -67,11 +79,14 @@
           </div>
 
           <div class="form-group required">
-            <label >Pais</label>
-            <select class="form-control" formControlName="country" >
-              <option value="GT" selected>Guatemala</option>
+            <label>
+              <i class="fa fa-info-circle _popover hover" title="Pais" data-content="El sistema automatica detecta el pais en el cual estas, pero puedes escoger cualquier otro."></i>
+              Pais
+            </label>
+            <select class="form-control" formControlName="country_code" >
+              <option [value]="cou.country_code" *ngFor="let cou of countries$ | async"> {{cou.country_name}} </option>
             </select>
-          </div>          
+          </div>
 
           <div class="form-group required">
             <div class="form-check">

@@ -18,12 +18,13 @@ export class DashboardComponent implements OnInit {
   constructor(private _http: HttpService, public _util:UtilService, private aes:AESService){ }
 
   ngOnInit() {
-    this.data$ = this._http.getJSON()
-    .pipe(
-      map(
-        x=>x=this._util.decryptJSON(x)
-      )
-    );
+
+    // this.data$ = this._http.getJSON()
+    // .pipe(
+    //   map(
+    //     x=>x=this._util.decryptJSON(x)
+    //   )
+    // );
 
     // this._http.getJSON()
     // .subscribe(
