@@ -1,0 +1,95 @@
+<header [modelHeader]="_modelHeader"></header>
+
+<div class="container">
+     <div class="card">
+          <div class="card-header font-weight-bold">
+               Información general
+          </div>
+          
+          <div class="card-body" *ngIf="isLoaded; else loading">
+               <form [formGroup]="formUser" (submit)="formUserSubmit()">
+                    <div class="form-row">
+                         <div class="form-group col-md-6">
+                              <label>
+                                   <i class="fa fa-info-circle _popover hover" title="Fecha de creación" data-content="Fecha y hora exacta en la que creaste tu cuenta en BudgetGT."></i>
+                                   Fecha de creación
+                              </label>
+                              <input type="text" formControlName="create_at" class="form-control" placeholder="YYY-MM-DD HH:MM:SS">
+                              <message-error [control]="formUser.controls.create_at" ></message-error>
+                         </div>
+          
+                         <div class="form-group col-md-6">
+                              <label>
+                                   <i class="fa fa-info-circle _popover hover" title="Fecha de actualización" data-content="Fecha y hora exacta de la última vez que actualizaste tu cuenta."></i>
+                                   Fecha de la última actualización
+                              </label>
+                              <input type="text" formControlName="update_at" class="form-control" placeholder="YYY-MM-DD HH:MM:SS">
+                              <message-error [control]="formUser.controls.update_at" ></message-error>
+                         </div>
+                    </div>
+
+                    <div class="form-row">
+                         <div class="form-group required col-md-6">
+                              <label>
+                                   <i class="fa fa-info-circle _popover hover" title="Nombre (s)" data-content="Ingresa tu primer nombre o todos tus nombres."></i>
+                                   Nombre (s)
+                              </label>
+                              <input type="text" formControlName="first_name" class="form-control" [class.is-invalid]="_util.getError(formUser.controls.first_name)" placeholder="Ingresa tu nombre(s)">
+                              <message-error [control]="formUser.controls.first_name" ></message-error>
+                         </div>
+          
+                         <div class="form-group col-md-6">
+                              <label>
+                                   <i class="fa fa-info-circle _popover hover" title="Apellido (s)" data-content="Ingresa tu primer apellido o todos tus apellidos."></i>
+                                   Apellido (s)
+                              </label>
+                              <input type="text" formControlName="last_name" class="form-control" [class.is-invalid]="_util.getError(formUser.controls.last_name)" placeholder="Ingresa tu apellido(s)">
+                              <message-error [control]="formUser.controls.last_name" ></message-error>
+                         </div>
+                    </div>
+          
+                    <div class="form-group required">
+                         <label>
+                              <i class="fa fa-info-circle _popover hover" title="E-mail" data-content="Está es la dirección de correo en la cual recibiras noticias, confirmaras tu cuenta y podras usar para recuperar tu clave en caso la olvides."></i>
+                              Correo electronico
+                         </label>
+                         <input type="text" formControlName="email" class="form-control" [class.is-invalid]="_util.getError(formUser.controls.email)" placeholder="nombre@dominio.com">
+                         <message-error [control]="formUser.controls.email" ></message-error>
+                    </div>
+          
+                    <div class="form-group required">
+                         <label>
+                              <i class="fa fa-info-circle _popover hover" title="Pais" data-content="El sistema automatica detecta el pais en el cual estas, pero puedes escoger cualquier otro."></i>
+                              Pais y moneda
+                         </label>
+                         <select class="form-control" formControlName="country_fk" >
+                              <option [value]="cou.id" *ngFor="let cou of (countries$ | async)?.body"> {{cou.country_name}} - {{cou.currency_name}} - {{cou.currency_symbol}} </option>
+                         </select>
+                         <message-error [control]="formUser.controls.country_fk" ></message-error>
+
+                    </div>
+
+                    <div class="form-group required">
+                         <label>
+                              <i class="fa fa-info-circle _popover hover" title="Día de reinicio" data-content="En este día cada mes el sistema reiniciara tu presupuesto."></i>
+                              Día para el reinicio automático del presupuesto
+                         </label>
+                         <select class="form-control" formControlName="restart_day" >
+                              <option [value]="i" *ngFor="let i of _days"> Reiniciar en día: {{i}} </option>
+                         </select>
+                         <message-error [control]="formUser.controls.restart_day" ></message-error>
+                         <small *ngIf="formUser.controls.restart_day.value > 28" class="text-info">
+                              Para los meses que possean menor cantidad de dias, el reinicio será el último día del mes.
+                         </small>
+                    </div>
+          
+                    <button id="_sendForm" class="btn btn-lg btn-block btn-primary mb-3" [disabled]="!formUser.valid"> Actualizar Información </button>
+               </form>
+
+               <bud-alert [data]="_error"></bud-alert>
+          </div>
+          <ng-template #loading>
+               <div class="card-body is-loading is-loading-lg"></div>
+          </ng-template>
+     </div>
+</div>

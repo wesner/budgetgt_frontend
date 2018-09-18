@@ -26,6 +26,7 @@
               "src/carbon/vendor/simple-line-icons/css/simple-line-icons.css",
               "src/carbon/vendor/font-awesome/css/fontawesome-all.css",
               "src/carbon/carbon.css",
+              "node_modules/izitoast/dist/css/iziToast.min.css",
               "src/styles.css"
             ],
             "scripts": [
@@ -35,7 +36,8 @@
               "src/carbon/vendor/chart.js/chart.min.js",
               "src/carbon/carbon.js",
               "src/CryptoJS-v3.1.2/rollups/aes.js",
-              "src/CryptoJS-v3.1.2/components/mode-ecb-min.js"
+              "src/CryptoJS-v3.1.2/components/mode-ecb-min.js",
+              "node_modules/izitoast/dist/js/iziToast.min.js"
             ]
           },
           "configurations": {

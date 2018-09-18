@@ -1,0 +1,17 @@
+<header [modelHeader]="_modelHeader" (clickButton)="newAccount()"></header>
+<div class="">
+     <data-table 
+          [names]="_nameItems" 
+          [array]="_listItems"
+          [settings]="_settings"
+          (details)="detailsAccount($event)"
+          (edit)="editAccount($event)"
+          (delete)="confirmationBeforeDelete($event)"
+     ></data-table>
+</div>
+<modal-new 
+     [datamodal]="_dataModal" 
+     (close)="getAllItems()"
+     #modalNew
+     ></modal-new>
+<confirmation-delete #confirmationDelete (delete)="deleteAccount($event)"></confirmation-delete>

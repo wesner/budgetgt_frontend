@@ -84,7 +84,7 @@
               Pais
             </label>
             <select class="form-control" formControlName="country_code" >
-              <option [value]="cou.country_code" *ngFor="let cou of countries$ | async"> {{cou.country_name}} </option>
+              <option [value]="cou.country_code" *ngFor="let cou of (countries$ | async)?.body"> {{cou.country_name}} </option>
             </select>
           </div>
 
@@ -93,24 +93,36 @@
               <input class="form-check-input" type="checkbox" id="agreement" formControlName="agreement" [class.is-invalid]="_util.getError(formRegister.controls.agreement)">
               <label class="form-check-label" for="agreement">
                 Acepto los terminos y condiciones
-              </label>
+              </label> <small> &nbsp; <a href="">Leer terminos y condiciones</a> </small>
             </div>
             <message-error [control]="formRegister.controls.agreement" ></message-error>
           </div>
 
-          <button class="btn btn-lg btn-block btn-primary mb-3" [disabled]="!formRegister.valid"> Crear cuenta </button>
+          <button id="_sendForm" class="btn btn-lg btn-block btn-primary mb-3" [disabled]="!formRegister.valid"> Crear cuenta </button>
+      </form>
 
-          <div class="text-center">
-            <small class="text-muted text-center">
-              ¿Tienes una cuenta? <a routerLink="/login">Inicia sesión</a>.
-            </small>
-          </div>
-          <hr>
-          <p class="text-right">
-            <small class="text-muted">BudgetGT - 2018 </small>
-          </p>
-        </form>
 
+      <!-- Inicio de Alerta de correo duplicado -->
+      <div *ngIf="_error.view" class="alert alert-danger text-center" role="alert">
+          <strong style="color: #721c24">{{_error.title}}</strong>
+          <span> {{_error.message}}</span>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <!-- Fin de Alerta de correo duplicado -->
+
+      
+      <div class="text-center">
+        <small class="text-muted text-center">
+          ¿Tienes una cuenta?  <a routerLink="/login">Inicia sesión</a>.
+        </small>
+      </div>
+      <hr>
+      <p class="text-right">
+        <small class="text-muted">BudgetGT - 2018 </small>
+      </p>
+        
       </div>
     </div>
   </div>

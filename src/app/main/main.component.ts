@@ -1,49 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { BreakpointObserver, BreakpointState, Breakpoints } from '@angular/cdk/layout';
-
+import { UtilService } from '../utilities/util.service';
+import { Router } from '@angular/router';
+import { modules } from '../data-models/navigation';
 declare var $: any;
-
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
+
 export class MainComponent implements OnInit {
+  userName: string;
+  _modules: any[]=[];
+
+  constructor(
+    private _util: UtilService,
+    private _router: Router
+  ){
+    this.userName = this._util.getDataUser("name");
+    this._modules = modules;
+  }
+
+  ngOnInit(){ }
+
   
-  text: string;
-
-  constructor(public beakpointObserver: BreakpointObserver){
+  signOut(){
+    sessionStorage.clear();
+    localStorage.clear();
+    this._router.navigate(["/login"]);
   }
-
-  ngOnInit(){
-    // this.beakpointObserver.observe([Breakpoints.XSmall, Breakpoints.Tablet, Breakpoints.Web]).subscribe(x=>{ this.changeLayout(); });
-
-  }
-
-  changeLayout():void{
-    if(this.beakpointObserver.isMatched(Breakpoints.XSmall)){ /** Movil */
-      this.removeClass("content","", true);
-      this.addClass("content","movil");
-    }
-    else if(this.beakpointObserver.isMatched(Breakpoints.Tablet)){ /** Tableta */
-      this.removeClass("content","", true);
-      this.addClass("content","tablet");
-    }
-    else if(this.beakpointObserver.isMatched(Breakpoints.Web)){ /** Web */
-      this.removeClass("content","", true);
-      this.addClass("content","web");
-    }
-  }
-
-  addClass(_selector:string, _class:string):void{
-    let content = document.getElementById(_selector);
-    content.classList.add(_class);
-  }
-  removeClass(_selector:string, _class:string, all?:boolean):void{
-    let content = document.getElementById(_selector);
-    if(all){ content.className = ""; }
-    else{ content.classList.remove(_class); }
-  }
-  
-
 }

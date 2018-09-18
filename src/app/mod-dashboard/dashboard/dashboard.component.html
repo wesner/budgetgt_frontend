@@ -12,4 +12,29 @@
       {{ data$ | async | json }}
     </pre>
   </div>
+
+
+
+  <div>
+      <!--output '$0.26'-->
+      <p>A: {{a | currency}}</p>
+   
+      <!--output 'CA$0.26'-->
+      <p>B: {{a | currency:'GTQ'}}</p>
+   
+      <!--output 'CAD0.26'-->
+      <p>C: {{a | currency:'GTQ':'symbol-narrow'}}</p>
+   
+      <!--output 'CA$0,001.35'-->
+      <p>D: {{b | currency:'GTQ':'symbol':'4.2-2'}}</p>
+   
+      <!--output '$0,001.35'-->
+      <p>E: {{b | currency:'CRC':'symbol-narrow':'4.2-5'}}</p>
+   
+      <!--output '0 001,35 CA$'-->
+      <p>F: {{b | currency:'GTQ':'symbol':'4.2-2'}}</p>
+   
+      <!--output 'CLP1' because CLP has no cents-->
+      <p>G: {{b | currency:'GTQ'}}</p>
+  </div>
 </div>

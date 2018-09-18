@@ -1,0 +1,22 @@
+<div class="modal fade" id="confirmationDelete" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+      <div class="modal-content rounded-0">
+        <div class="modal-body bg-danger">
+          <div class="text-center">
+            <h1 class="text-white"><i class="fa fa-trash fa-3x"></i></h1>
+            <h2 class="text-white">
+              ¿Esta seguro de eliminar de forma permanente el item <span class="font-weight-bold">{{nameItem}}</span>?
+            </h2>
+          </div>
+          <hr>
+          <div class="text-justify font-weight-light text-white">
+              <p style="font-size: 11px;">El item no se podrá recuperar despues de esta acción, si no esta seguro puede solamente cambiar el estado del item.</p>
+          </div>
+        </div>
+        <div class="modal-footer bg-light text-center">
+          <button type="button" class="btn btn-danger" (click)="confirmationDelete()"> <i class="fa fa-trash"></i> Sí, eliminar</button>
+          <button type="button" class="btn btn-dark" data-dismiss="modal"> <i class="fa fa-minus-circle"></i> No, cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,33 @@
+<header [modelHeader]="_modelHeader"></header>
+
+<div class="container">
+     <div class="card">
+          <div class="card-header font-weight-bold">
+               Información de seguridad
+          </div>
+          
+          <div class="card-body">
+               <form [formGroup]="deleteAccountForm" (submit)="deleteAccountFormSubmit()">
+                  
+                <div class="form-group required">
+                      <label>
+                            <i class="fa fa-info-circle _popover hover" title="Contraseña Actual" data-content="La contraseña que actuamente esta registrada en el sistema."></i>
+                            Contraseña
+                      </label>
+                      <div class="input-group input-group-merge">
+                          <input [type]="viewPassword ? 'text' : 'password' " formControlName="password" class="form-control form-control-appended" [class.is-invalid]="_util.getError(deleteAccountForm.controls.password)" placeholder="*********">
+                          <div class="input-group-append">
+                            <span class="input-group-text">
+                              <i (click)="viewPassword ? viewPassword=false : viewPassword=true" [class]="viewPassword ? 'fa fa-eye-slash hover' : 'fa fa-eye hover'"></i>
+                            </span>
+                          </div>
+                        </div>                      
+                      <message-error [control]="deleteAccountForm.controls.password" ></message-error>
+                  </div>
+                  <button id="_sendForm" class="btn btn-lg btn-block btn-danger mb-3" [disabled]="!deleteAccountForm.valid"> Borrar Cuenta </button>
+               </form>
+
+               <bud-alert [data]="_error"></bud-alert>
+          </div>
+     </div>
+</div>

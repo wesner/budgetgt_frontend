@@ -15,6 +15,11 @@ export class DashboardComponent implements OnInit {
   data$: Observable<any>;
   tmpData: any;
 
+
+  a: number = 0.259;
+  b: number = 1.3495464654165145;
+
+
   constructor(private _http: HttpService, public _util:UtilService, private aes:AESService){ }
 
   ngOnInit() {

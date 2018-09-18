@@ -1,4 +1,4 @@
-import { Component, OnInit, ErrorHandler } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ValidationService } from '../../utilities/message-error/form-validation/service-form-validation';
 import { UtilService } from '../../utilities/util.service';
@@ -6,9 +6,9 @@ import { HttpService } from '../../services/http-service/http-service.service';
 import { Observable } from 'rxjs';
 import { Country } from '../../data-models/catalogs';
 import { AESService } from '../../utilities/aes.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { codeErrorMySql } from '../../data-models/code-errors-mysql';
-
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { errorForm } from '../../data-models/errors';
 declare var $:any;
 
 @Component({
@@ -18,14 +18,21 @@ declare var $:any;
 })
 export class RegisterComponent implements OnInit {
 
-  countries$:Observable<Country[]>;
-  viewPassword: false;
+  countries$:Observable<HttpResponse<Country[]>>;
+  viewPassword: boolean = false;
   formRegister: FormGroup;
   codeCountry: string;
+  _error: errorForm;
+  
 
-
-  constructor(private _formBuild:FormBuilder, public _util:UtilService, private _http: HttpService, private _aes: AESService){
-    this.formRegister = _formBuild.group({
+  constructor(
+    private _formBuild:FormBuilder, 
+    public _util:UtilService, 
+    private _http: HttpService, 
+    private _aes: AESService,
+    private _router: Router
+  ){
+    this.formRegister = this._formBuild.group({
       first_name: ['', [ValidationService.requiredValidator]],
       last_name: ['', ],
       email: ['', [ValidationService.requiredValidator, ValidationService.emailValidator]],
@@ -35,11 +42,12 @@ export class RegisterComponent implements OnInit {
       country_code: ['OT', ],
       agreement: [false, [ValidationService.requiredValidator]]
     });
+    this._error = new errorForm();
   }
 
   ngOnInit(){
     this.countries$ = this._http.getAllCountries();
-    
+
     /**
      * Si la pantalla es mayor al div de registro coloca el 100VH en el div de registro
      */
@@ -78,19 +86,29 @@ export class RegisterComponent implements OnInit {
  */
   formRegisterSubmit(){
     this.formRegister.controls.password.setValue(this._aes._AESencrypt(this.formRegister.controls.firstPassword.value));
+    document.getElementById("_sendForm").classList.add("is-loading");
 
     this._http.register(this.formRegister.value).subscribe(
       (ret)=>{
+        document.getElementById("_sendForm").classList.remove("is-loading");
         if(ret.success){
+          localStorage.clear();
+          sessionStorage.clear();
+          sessionStorage.setItem(this._util.getKeyStorange("user"), ret.message);
+          this._router.navigate(["/main/dashboard"]);
         }
         else{
-          // console.log(codeErrorMySql[ret.code]['message'])
+          this._error.view = true;
+          this._error.title = "Correo Inválido.";
+          this._error.message = "Esté correo ya ha sido utilizado para crear una cuenta en BudgetGT.";
         }
       },
       (err: HttpErrorResponse)=>{
-        console.log(err);
+        document.getElementById("_sendForm").classList.remove("is-loading");
+        this._error.view = true;
+        this._error.title = "Error de comunicación.";
+        this._error.message = "Lo sentimos mucho pero ocurrio un error inesperado, por favor intenta luego.";
       }
     )
-    
   }
 }

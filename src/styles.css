@@ -10,3 +10,14 @@ form .required label::after{
      color: #e63757;
      font-weight: bold;
 }
+
+.group-input{
+     padding: .125rem .5rem;
+     border-radius: .25rem;
+     width: 100%;
+     background-color: #fff;
+     background-clip: padding-box;
+     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+     color: #12263f;
+     border: 1px solid #d2ddec;
+}
