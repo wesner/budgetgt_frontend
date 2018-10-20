@@ -1,0 +1,174 @@
+<div>
+      <div class="card">
+        <img class="card-img-top" src="../../../../assets/fixed-icome.jpg" height="150" alt="Card image cap">
+        <div class="card-header bg-dark">
+            <div class="row">
+              <h2 class="card-header-title text-white">Detalles del ingreso fijo</h2>
+            </div>
+        </div>
+        <div class="card-img-overlay text-right">
+            <div class="btn-group-vertical col-sm-3">
+              <button type="button" class="btn btn-warning shadow" (click)="return()"> <i class="fa fa-long-arrow-alt-left"></i> Regresar</button>
+              <button type="button" class="btn btn-warning shadow" (click)="edit()"> <i class="fa fa-edit"></i> Editar</button>
+            </div>
+        </div>
+        <div class="card-body" *ngIf="fixedIncome$; else loading">
+          <!-- <div *ngIf="!(fixedIncome$ | async)?.length == 0">
+              <message-empty></message-empty>
+          </div> -->
+          <div class="row">
+            <div class="col-sm-6 card card-inactive rounded-0">
+              <div class="card-body">
+                <h3 class="card-title">&nbsp;</h3>
+                <div >
+                  <dl class="row">
+                    <dt class="col-sm-5 ">Nombre </dt> 
+                    <dd class="col-sm-7 "> {{(fixedIncome$ | async)?.name}} </dd>
+                    
+                    <dt class="col-sm-5 ">Fecha de creación </dt> 
+                    <dd class="col-sm-7 "> {{(fixedIncome$ | async)?.create_at}} </dd>
+                    
+                    <dt class="col-sm-5 ">Fecha de actualización </dt> 
+                    <dd class="col-sm-7 "> {{(fixedIncome$ | async)?.update_at}} </dd>
+                    
+                    <dt class="col-sm-5 ">Descripción </dt>
+                    <dd class="col-sm-7 "> {{(fixedIncome$ | async)?.description}} </dd>
+                    
+                    <dt class="col-sm-5 ">Día de pago </dt>
+                    <dd class="col-sm-7 "> {{(fixedIncome$ | async)?.payday}} de cada mes.</dd>
+                    
+                    <dt class="col-sm-5 ">Monto </dt>
+                    <dd class="col-sm-7 "> {{(fixedIncome$ | async)?.amount | currency:_util.getDataUser('currency_symbol'):'symbol' }} </dd>          
+                    
+
+                    <!-- Cuenta -->
+                    <dt class="col-sm-5 ">Nombre de la cuenta</dt> 
+                    <dd class="col-sm-7 "> {{(fixedIncome$ | async)?.account.name}} </dd>
+                  
+                    <dt class="col-sm-5 ">Descripción de la cuenta </dt> 
+                    <dd class="col-sm-7 "> {{(fixedIncome$ | async)?.account.description}} </dd>
+                    
+                    <dt class="col-sm-5 ">Tipo de cuenta </dt> 
+                    <dd class="col-sm-7 "> {{(fixedIncome$ | async)?.account.type}} </dd>
+
+                    <dt class="col-sm-5 ">Banco de la cuenta </dt> 
+                    <dd class="col-sm-7 "> {{(fixedIncome$ | async)?.account.bank_name}} </dd>                      
+
+                    
+                    <!-- Categoria -->
+                    <dt class="col-sm-5 ">Nombre categoria</dt> 
+                    <dd class="col-sm-7 "> <span class="badge badge-soft-primary" title="{{(fixedIncome$ | async)?.category.description}}"> {{(fixedIncome$ | async)?.category.name}} </span> </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+
+            <!-- Periodicidad -->
+            <div class="col-sm-6 card card-inactive rounded-0">
+              <div class="card-body">
+                <h3 class="card-title">Calendario de periodicidad</h3>
+                <div>
+                  <div class="row">
+                      <div class="col-sm-4 my-0 py-1 bg-white month text-center card rounded-0">
+                        <div class="card-body" [ngClass]="{'text-success': (fixedIncome$ | async)?.periodicity.january, 'text-danger': !(fixedIncome$ | async)?.periodicity.january }">
+                          <h5 class="card-title"> Enero </h5>
+                          <div *ngIf="(fixedIncome$ | async)?.periodicity.january" > <i style="font-size: 30px" class="fa fa-check"></i> </div>
+                          <div *ngIf="!(fixedIncome$ | async)?.periodicity.january"> <i style="font-size: 30px" class="fa fa-times"></i> </div>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-4 my-0 py-1 bg-white month text-center card rounded-0">
+                        <div class="card-body" [ngClass]="{'text-success': (fixedIncome$ | async)?.periodicity.february, 'text-danger': !(fixedIncome$ | async)?.periodicity.february }">
+                          <h5 class="card-title">Febrero </h5>
+                          <div *ngIf="(fixedIncome$ | async)?.periodicity.february" > <i style="font-size: 30px" class="fa fa-check"></i> </div>
+                          <div *ngIf="!(fixedIncome$ | async)?.periodicity.february"> <i style="font-size: 30px" class="fa fa-times"></i> </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 my-0 py-1 bg-white month text-center card rounded-0">
+                        <div class="card-body" [ngClass]="{'text-success': (fixedIncome$ | async)?.periodicity.march, 'text-danger': !(fixedIncome$ | async)?.periodicity.march }">
+                          <h5 class="card-title">Marzo</h5>
+                          <div *ngIf="(fixedIncome$ | async)?.periodicity.march" > <i style="font-size: 30px" class="fa fa-check"></i> </div>
+                          <div *ngIf="!(fixedIncome$ | async)?.periodicity.march"> <i style="font-size: 30px" class="fa fa-times"></i> </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-4 my-0 py-1 bg-white month text-center card rounded-0">
+                        <div class="card-body" [ngClass]="{'text-success': (fixedIncome$ | async)?.periodicity.april, 'text-danger': !(fixedIncome$ | async)?.periodicity.april }">
+                          <h5 class="card-title">Abril </h5>
+                          <div *ngIf="(fixedIncome$ | async)?.periodicity.april" > <i style="font-size: 30px" class="fa fa-check"></i> </div>
+                          <div *ngIf="!(fixedIncome$ | async)?.periodicity.april"> <i style="font-size: 30px" class="fa fa-times"></i> </div>                        
+                        </div>
+                      </div>
+                      <div class="col-sm-4 my-0 py-1 bg-white month text-center card rounded-0">
+                        <div class="card-body" [ngClass]="{'text-success': (fixedIncome$ | async)?.periodicity.may, 'text-danger': !(fixedIncome$ | async)?.periodicity.may }">
+                          <h5 class="card-title">Mayo </h5>
+                          <div *ngIf="(fixedIncome$ | async)?.periodicity.may" > <i style="font-size: 30px" class="fa fa-check"></i> </div>
+                          <div *ngIf="!(fixedIncome$ | async)?.periodicity.may"> <i style="font-size: 30px" class="fa fa-times"></i> </div>                        
+                        </div>
+                      </div>
+                      <div class="col-sm-4 my-0 py-1 bg-white month text-center card rounded-0">
+                        <div class="card-body" [ngClass]="{'text-success': (fixedIncome$ | async)?.periodicity.june, 'text-danger': !(fixedIncome$ | async)?.periodicity.june }">
+                          <h5 class="card-title">Junio </h5>
+                          <div *ngIf="(fixedIncome$ | async)?.periodicity.june" > <i style="font-size: 30px" class="fa fa-check"></i> </div>
+                          <div *ngIf="!(fixedIncome$ | async)?.periodicity.june"> <i style="font-size: 30px" class="fa fa-times"></i> </div>                        
+                        </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-4 my-0 py-1 bg-white month text-center card rounded-0">
+                        <div class="card-body" [ngClass]="{'text-success': (fixedIncome$ | async)?.periodicity.july, 'text-danger': !(fixedIncome$ | async)?.periodicity.july }">
+                          <h5 class="card-title"> Julio </h5>
+                          <div *ngIf="(fixedIncome$ | async)?.periodicity.july" > <i style="font-size: 30px" class="fa fa-check"></i> </div>
+                          <div *ngIf="!(fixedIncome$ | async)?.periodicity.july"> <i style="font-size: 30px" class="fa fa-times"></i> </div>                        
+                        </div>
+                      </div>
+                      <div class="col-sm-4 my-0 py-1 bg-white month text-center card rounded-0">
+                        <div class="card-body" [ngClass]="{'text-success': (fixedIncome$ | async)?.periodicity.august, 'text-danger': !(fixedIncome$ | async)?.periodicity.august }">
+                          <h5 class="card-title">Agosto </h5>
+                          <div *ngIf="(fixedIncome$ | async)?.periodicity.august" > <i style="font-size: 30px" class="fa fa-check"></i> </div>
+                          <div *ngIf="!(fixedIncome$ | async)?.periodicity.august"> <i style="font-size: 30px" class="fa fa-times"></i> </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 my-0 py-1 bg-white month text-center card rounded-0">
+                        <div class="card-body" [ngClass]="{'text-success': (fixedIncome$ | async)?.periodicity.september, 'text-danger': !(fixedIncome$ | async)?.periodicity.september }">
+                          <h5 class="card-title">Septiembre</h5>
+                          <div *ngIf="(fixedIncome$ | async)?.periodicity.september" > <i style="font-size: 30px" class="fa fa-check"></i> </div>
+                          <div *ngIf="!(fixedIncome$ | async)?.periodicity.september"> <i style="font-size: 30px" class="fa fa-times"></i> </div>                        
+                        </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-4 my-0 py-1 bg-white month text-center card rounded-0">
+                        <div class="card-body" [ngClass]="{'text-success': (fixedIncome$ | async)?.periodicity.october, 'text-danger': !(fixedIncome$ | async)?.periodicity.october }">
+                          <h5 class="card-title">Octubre </h5>
+                          <div *ngIf="(fixedIncome$ | async)?.periodicity.october" > <i style="font-size: 30px" class="fa fa-check"></i> </div>
+                          <div *ngIf="!(fixedIncome$ | async)?.periodicity.october"> <i style="font-size: 30px" class="fa fa-times"></i> </div>                        
+                        </div>
+                      </div>
+                      <div class="col-sm-4 my-0 py-1 bg-white month text-center card rounded-0">
+                        <div class="card-body" [ngClass]="{'text-success': (fixedIncome$ | async)?.periodicity.november, 'text-danger': !(fixedIncome$ | async)?.periodicity.november }">
+                          <h5 class="card-title">Noviembre </h5>
+                          <div *ngIf="(fixedIncome$ | async)?.periodicity.november" > <i style="font-size: 30px" class="fa fa-check"></i> </div>
+                          <div *ngIf="!(fixedIncome$ | async)?.periodicity.november"> <i style="font-size: 30px" class="fa fa-times"></i> </div>                        
+                        </div>
+                      </div>
+                      <div class="col-sm-4 my-0 py-1 bg-white month text-center card rounded-0">
+                        <div class="card-body" [ngClass]="{'text-success': (fixedIncome$ | async)?.periodicity.december, 'text-danger': !(fixedIncome$ | async)?.periodicity.december }">
+                          <h5 class="card-title">Diciembre </h5>
+                          <div *ngIf="(fixedIncome$ | async)?.periodicity.december" > <i style="font-size: 30px" class="fa fa-check"></i> </div>
+                          <div *ngIf="!(fixedIncome$ | async)?.periodicity.december"> <i style="font-size: 30px" class="fa fa-times"></i> </div>                        
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ng-template #loading>
+          <div class="card-body is-loading is-loading-lg"></div>
+        </ng-template>
+      </div>
+</div>

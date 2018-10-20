@@ -21,7 +21,7 @@ export class DeleteAccountComponent implements OnInit {
   _error: errorForm;
 
   constructor(
-    private _formBuild:FormBuilder,
+    private _formBuild: FormBuilder,
     public _util: UtilService,
     private _http: HttpService,
     private _aes: AESService,

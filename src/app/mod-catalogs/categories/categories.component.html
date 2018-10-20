@@ -1,3 +1,17 @@
-<p>
-  categories works!
-</p>
+<header [modelHeader]="_modelHeader" (clickButton)="newCategory()"></header>
+<div class="">
+     <data-table 
+          [names]="_nameItems" 
+          [array]="_listItems"
+          [settings]="_settings"
+          (details)="detailsCategory($event)"
+          (edit)="editCategory($event)"
+          (delete)="confirmationBeforeDelete($event)"
+     ></data-table>
+</div>
+<data-modal-category
+     [datamodal]="_dataModal" 
+     (close)="getAllItems()"
+     #dataModal
+></data-modal-category>
+<confirmation-delete #confirmationDelete (delete)="deleteCategory($event)"></confirmation-delete>

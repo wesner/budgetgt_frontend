@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { modelHeader, buttonHeader } from '../../data-models/components';
 
 @Component({
   selector: 'app-fixed-expenses',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FixedExpensesComponent implements OnInit {
 
-  constructor() { }
+  _modelHeader: modelHeader;
+
+  
+  constructor(){
+    this._modelHeader = new modelHeader("Catalogos", "Ingresos Fijos", "Listado de ingresos fijos personales.", 
+                        new buttonHeader(true, "Crear nuevo ingreso fijo", "dark"));
+  }
 
   ngOnInit() {
   }

@@ -30,7 +30,6 @@ export class AccountsComponent implements OnInit {
   _settings: settingsDataTable;
 
   constructor(
-    private _formBuild:FormBuilder,
     public _util: UtilService,
     private _http: HttpService,
   ){
@@ -107,7 +106,7 @@ export class AccountsComponent implements OnInit {
         this._modalNew.closeLoading();
         this._util.budAlert("Error en comunicación", "Ocurrio un error en la comnicación, por favor intenta más tarde.", "error");
       }
-    )
+    );
   }
 
 

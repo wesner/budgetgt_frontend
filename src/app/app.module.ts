@@ -37,6 +37,13 @@ import { CategoriesComponent } from './mod-catalogs/categories/categories.compon
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { ModalNewComponent } from './mod-catalogs/accounts/modal-new/modal-new.component';
 import { ConfirmationDeleteComponent } from './components/confirmation-delete/confirmation-delete.component';
+import { DataModalComponent } from './mod-catalogs/categories/data-modal/data-modal.component';
+import { FormFeComponent } from './mod-catalogs/fixed-expenses/form-fe/form-fe.component';
+import { DetailsComponent } from './mod-catalogs/fixed-expenses/details/details.component';
+import { FormFiComponent } from './mod-catalogs/fixed-incomes/form-fi/form-fi.component';
+import { DetailsFiComponent } from './mod-catalogs/fixed-incomes/details-fi/details-fi.component';
+import { MessageEmptyComponent } from './components/message-empty/message-empty.component';
+import { ListFIComponent } from './mod-catalogs/fixed-incomes/list-fi/list-fi.component';
 
 
 
@@ -62,6 +69,13 @@ import { ConfirmationDeleteComponent } from './components/confirmation-delete/co
     DataTableComponent,
     ModalNewComponent,
     ConfirmationDeleteComponent,
+    DataModalComponent,
+    FormFeComponent,
+    DetailsComponent,
+    FormFiComponent,
+    DetailsFiComponent,
+    MessageEmptyComponent,
+    ListFIComponent
   ],
   imports: [
     BrowserModule,

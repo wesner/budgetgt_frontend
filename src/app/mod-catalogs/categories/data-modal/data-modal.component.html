@@ -1,0 +1,113 @@
+<div class="modal fade" id="modalNew" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content rounded-0">
+      <div class="modal-header rounded-0 bg-dark" style="padding-top: 0px; padding-bottom: 0px;">
+
+            <div class="header-body" style="border-bottom: 0px; padding-top: 1rem !important; padding-bottom: 1rem !important; width: 100%;">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h6 class="header-pretitle"> gestion de categorias </h6>
+                  <h1 class="header-title text-white"> 
+                    <span *ngIf="_dataModal?.type == 'new'">Creación</span>
+                    <span *ngIf="_dataModal?.type == 'edit'">Edición</span>
+                    <span *ngIf="_dataModal?.type == 'detail'">Detalles</span>
+                    de categoria </h1>
+                  <small class="text-muted"> Esta sección permite la creación, edición y consulta de una categoria </small>
+                </div>
+                <div class="col-lg-auto col-md-auto col-sm-12" *ngIf="_dataModal?.type == 'detail'">
+                    <div style="height: 10px;" class="d-sm-block d-md-none d-lg-none d-xl-none"></div>
+                    <button type="button" class="btn btn-outline-light btn-sm btn-block" (click)="editCategory()">
+                      <i class="fa fa-pencil-alt"></i> &nbsp; Habilitar Edición
+                    </button>
+                </div>
+              </div>
+            </div>
+
+      </div>
+      <div class="modal-body modal-body-data">
+              <div *ngIf="!isLoaded; else loading">
+                   <form class="form" [formGroup]="categoryForm" (submit)="categoryFormSubmit()">
+                        <div class="form-row">
+                             <div class="form-group col-md-6">
+                                  <label>
+                                       <i class="fa fa-info-circle _popover hover" title="Fecha de creación" data-content="Fecha y hora exacta en la que creaste tu cuenta en BudgetGT."></i>
+                                       Fecha de creación
+                                  </label>
+                                  <input type="text" [disableControl]="true" formControlName="create_at" class="form-control form-control-sm" placeholder="YYY-MM-DD HH:MM:SS">
+                                  <message-error [control]="categoryForm.controls.create_at" ></message-error>
+                             </div>
+              
+                             <div class="form-group col-md-6">
+                                  <label>
+                                       <i class="fa fa-info-circle _popover hover" title="Fecha de actualización" data-content="Fecha y hora exacta de la última vez que actualizaste tu cuenta."></i>
+                                       Fecha de la última actualización
+                                  </label>
+                                  <input type="text" [disableControl]="true" formControlName="update_at" class="form-control form-control-sm" placeholder="YYY-MM-DD HH:MM:SS">
+                                  <message-error [control]="categoryForm.controls.update_at" ></message-error>
+                             </div>
+                        </div>
+    
+                        <div class="form-group required">
+                            <label>
+                                  <i class="fa fa-info-circle _popover hover" title="Nombre (s)" data-content="Ingresa tu primer nombre o todos tus nombres."></i>
+                                  Nombre de la categoria
+                            </label>
+                            <input type="text" [disableControl]="readonlyInput" formControlName="name" class="form-control form-control-sm" [class.is-invalid]="_util.getError(categoryForm.controls.name)" placeholder="Nombre de la categoria">
+                            <message-error [control]="categoryForm.controls.name" ></message-error>
+                        </div>
+
+                        <div class="form-group">
+                              <label>
+                                  <i class="fa fa-info-circle _popover hover" title="Nombre (s)" data-content="Ingresa tu primer nombre o todos tus nombres."></i>
+                                  Descripción
+                              </label>
+                              <input type="text" [disableControl]="readonlyInput" formControlName="description" class="form-control form-control-sm" [class.is-invalid]="_util.getError(categoryForm.controls.description)" placeholder="Descripción de la categoria">
+                              <message-error [control]="categoryForm.controls.description" ></message-error>
+                        </div>
+              
+                        <div class="form-row">
+                          <div class="form-group col-md-6 required">
+                              <label>
+                                <i class="fa fa-info-circle _popover hover" title="Nombre (s)" data-content="Ingresa tu primer nombre o todos tus nombres."></i>
+                                Tipo de la categoria
+                              </label>
+                              <select [disableControl]="readonlyInput" formControlName="type" class="form-control form-control-sm" [class.is-invalid]="_util.getError(categoryForm.controls.type)">
+                                <option value="">--Selecione una opción--</option>
+                                <option value="general">General</option>
+                                <option value="ingresos">Ingresos</option>
+                                <option value="egresos">Egresos</option>
+                                <option value="deudas">Deudas</option>
+                              </select>
+                              <message-error [control]="categoryForm.controls.type" ></message-error>
+                          </div>
+                        </div>
+                   </form>
+    
+                   <bud-alert [data]="_error"></bud-alert>
+              </div>
+              <ng-template #loading>
+                   <div class="card-body is-loading is-loading-lg"></div>
+              </ng-template>
+      </div>
+      <div class="modal-footer bg-light">
+        <button type="button" class="btn btn-dark " (click)="close()"> <i class="fa fa-minus-circle"></i> Cancelar</button>
+        <button type="button" class="btn btn-primary" [disabled]="!categoryForm.valid" (click)="categoryFormSubmit()" *ngIf="_dataModal?.type != 'detail'">
+          <i class="fa fa-save"></i> {{textButton}} <span *ngIf="_dataModal?.type == 'new'">categoria</span> 
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Loading al crear o actualizar un item -->
+<div class="modal" id="modalLoading" role="dialog">
+  <div class="modal-dialog modal-dialog-loading modal-dialog-centered" role="document">
+    <div class="modal-content modal-content-loading">
+      <div class="modal-body modal-body-loading is-loading is-loading-lg"></div>
+    </div>
+  </div>
+</div>

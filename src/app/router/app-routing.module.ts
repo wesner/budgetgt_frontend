@@ -14,6 +14,9 @@ import { AccountsComponent } from '../mod-catalogs/accounts/accounts.component';
 import { CategoriesComponent } from '../mod-catalogs/categories/categories.component';
 import { FixedExpensesComponent } from '../mod-catalogs/fixed-expenses/fixed-expenses.component';
 import { FixedIncomesComponent } from '../mod-catalogs/fixed-incomes/fixed-incomes.component';
+import { DetailsFiComponent } from '../mod-catalogs/fixed-incomes/details-fi/details-fi.component';
+import { FormFiComponent } from '../mod-catalogs/fixed-incomes/form-fi/form-fi.component';
+import { ListFIComponent } from '../mod-catalogs/fixed-incomes/list-fi/list-fi.component';
 
 const routes: Routes = [
   // { path: '**', component: PageNotFoundComponent }
@@ -33,7 +36,12 @@ const routes: Routes = [
         { path: 'accounts', component: AccountsComponent, canActivate: [AuthRouterService]},
         { path: 'categories', component: CategoriesComponent, canActivate: [AuthRouterService]},
         { path: 'fixed-expenses', component: FixedExpensesComponent, canActivate: [AuthRouterService]},
-        { path: 'fixed-incomes', component: FixedIncomesComponent, canActivate: [AuthRouterService]}
+        { path: 'fixed-incomes', component: FixedIncomesComponent, canActivate: [AuthRouterService], children:[
+          { path: 'list', component: ListFIComponent, canActivate: [AuthRouterService]},
+          { path: 'new', component: FormFiComponent, canActivate: [AuthRouterService]},
+          { path: 'edit/:id', component: FormFiComponent, canActivate: [AuthRouterService]},
+          { path: 'details/:id', component: DetailsFiComponent, canActivate: [AuthRouterService]},
+        ]}
       ]},
       { path: '**', redirectTo: 'dashboard' }
   ]},

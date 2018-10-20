@@ -21,3 +21,52 @@ form .required label::after{
      color: #12263f;
      border: 1px solid #d2ddec;
 }
+
+
+
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+     .modal-body-data{
+          height: auto; 
+          overflow: auto;
+     }
+     .modal-dialog-loading{ margin: 0px !important; }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+     .modal-body-data{
+          height: auto; 
+          overflow: auto;
+     }
+     .modal-dialog-loading{ margin: 0px !important; }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+     .modal-body-data{
+          height: 450px; 
+          overflow: scroll;
+     }
+     .modal-dialog-loading{ margin: 0px !important; }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+     .modal-body-data{
+          height: 450px; 
+          overflow: scroll;
+     }
+     .modal-dialog-loading{ margin: 0px !important; }
+}
+
+
+.modal-body-loading, .modal-content-loading{
+     margin: 0px !important;
+     border-radius: 0px;
+     height: 100vh;
+     width: 100vw;
+     background: rgba(18, 38, 63, 0.1);
+}
+.modal-dialog-loading{ margin: 0px !important; }
