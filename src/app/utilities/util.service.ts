@@ -147,4 +147,23 @@ export class UtilService {
       });
     }
   }
+
+  /**
+   * @param obj = objeto a validar si esta vacio
+   */
+  isEmptyObject(obj) {
+    return (obj && (Object.keys(obj).length === 0));
+  }
+
+  
+  /**
+   * Devuelve el array de días del mes en curso
+   */
+  getDaysOfMonth():number[]{
+    let days = [];
+    let today = new Date();
+    let lastDayOfMonth = new Date(today.getFullYear(), today.getMonth()+1, 0);
+    for(let i=1; i<lastDayOfMonth.getDate()+1; i++){ days.push(i); }
+    return days;
+  }
 }

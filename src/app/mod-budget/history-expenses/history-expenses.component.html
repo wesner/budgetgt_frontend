@@ -1,0 +1,74 @@
+<div class="card">
+    <div class="card-header bg-dark">
+          <h2 class="card-header-title text-white">Egresos Historicos</h2>
+    </div>
+    <div class="card-body">
+
+      <div class="">
+        <form (submit)="formDataSubmit()" [formGroup]="formData">
+          <div class="form-row">
+            <div class="form-group col-md-4 required">
+              <label for="">Selecciona una fecha de inicio</label>
+              <input type="date" class="form-control" formControlName="dateStart">
+              <message-error [control]="formData.controls.dateStart" ></message-error>
+            </div>
+
+            <div class="form-group col-md-4 required">
+              <label for="">Selecciona una fecha de fin</label>
+              <input type="date" class="form-control" formControlName="dateEnd">
+              <message-error [control]="formData.controls.dateEnd" ></message-error>
+            </div>
+
+            <div class="form-group col-md-4">
+              <label> &nbsp; </label>
+              <button type="submit" [disabled]="!formData.valid" class="form-control btn btn-primary"> <i class="fa fa-search"></i> Consultar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div *ngIf="isView">
+        <div class="table-responsive" *ngIf="listExpenses; else loading">
+          <table class="table table-sm">
+            <thead>
+              <tr class="text-center">
+                <th class="align-middle" scope="col">#</th>
+                <th class="align-middle" scope="col">Fecha de Creación</th>
+                <th class="align-middle" scope="col">Nombre</th>
+                <th class="align-middle" scope="col">Descripción</th>
+                <th class="align-middle" scope="col">Forma de pago</th>
+                <th class="align-middle" scope="col">Monto</th>
+                <th class="align-middle" scope="col">Nombre de la cuenta</th>
+                <th class="align-middle" scope="col">Día de pago</th>
+                <th class="align-middle" scope="col">Categoria</th>
+                <th class="align-middle" scope="col">Tarjeta de crédito</th>
+                <th class="align-middle" scope="col">Efectuado</th>
+                <th class="align-middle" scope="col">No de documento</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ex of (listExpenses | async)?.body; let i=index">
+                <th scope="row"> {{i+1}} </th>
+                <td> {{ex.created_at}} </td>
+                <td> {{ex.expense_name}} </td>
+                <td> {{ex.expense_description}} </td>
+                <td> {{ex.type_payment_name}} </td>
+                <td> {{ ex.expense_amount | currency:_util.getDataUser('currency_symbol'):'symbol' }} </td>
+                <td> {{ex.account_name}} </td>
+                <td> {{ex.expense_payday}} </td>
+                <td> {{ex.category_name}} </td>
+                <td> {{ex.credit_card_number}} </td>
+                <td> {{ ex.expense_effected?'Sí':'No'}} </td>
+                <td> {{ex.expense_no_document}} </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <ng-template #loading>
+          <div class="card-body is-loading is-loading-lg"></div>
+      </ng-template>
+    </div>
+  </div>
+  <confirmation-delete #confirmationDelete (delete)="deleteExpense($event)"></confirmation-delete>

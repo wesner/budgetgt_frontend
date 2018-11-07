@@ -5,12 +5,24 @@
 */
 .hover:hover, a:hover{ cursor: pointer; }
 
+.sidebar-color{
+     background-image: linear-gradient(to bottom right,rgba(18,111,235,.9),rgba(114,3,225,.9));
+     background-repeat: no-repeat,no-repeat;
+     background-position: 50%,50%;
+     background-size: cover,cover;     
+}
+/* .sidebar-color .nav-dropdown{
+     background: none;
+} */
+.sidebar-color .nav-item{
+     color: #fff;
+}
+
 form .required label::after{
      content: "*";
      color: #e63757;
      font-weight: bold;
 }
-
 .group-input{
      padding: .125rem .5rem;
      border-radius: .25rem;
@@ -21,7 +33,9 @@ form .required label::after{
      color: #12263f;
      border: 1px solid #d2ddec;
 }
-
+.group-input-normal{
+     padding: .5rem .75rem;
+}
 
 
 

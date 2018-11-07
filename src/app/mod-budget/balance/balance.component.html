@@ -1,0 +1,58 @@
+<div class="card">
+    <div class="card-header bg-dark">
+          <h2 class="card-header-title text-white">Balance General</h2>
+    </div>
+    <div class="card-body">
+      <div *ngIf="isView">
+        <div class="table-responsive" *ngIf="!_util.isEmptyObject(listBalance); else loading">
+              <table class="table table-sm">
+                   <thead>
+                        <tr class="text-center">
+                             <th class="align-middle" scope="col">#</th>
+                             <th class="align-middle" scope="col">Fecha de Creación</th>
+                             <th class="align-middle" scope="col">Nombre</th>
+                             <th class="align-middle" scope="col">Categoria</th>
+                             <th class="align-middle" scope="col">Efectuado</th>
+                             <th class="align-middle" scope="col">Ingreso</th>
+                             <th class="align-middle" scope="col">Egreso</th>
+                        </tr>
+                   </thead>
+                   <tbody>
+                        <tr *ngFor="let bl of listBalance; let i=index">
+                             <th scope="row"> {{i+1}} </th>
+                             <td> {{bl.created_at}} </td>
+                             <td> {{bl.name}} </td>
+                             <td> {{bl.category_name}} </td>
+                             <td> {{bl.effected==1?'Sí':'No'}} </td>
+                             <td class="text-right"> {{bl.income | currency:_util.getDataUser('currency_symbol'):'symbol' }} </td>
+                             <td class="text-right"> {{bl.expense | currency:_util.getDataUser('currency_symbol'):'symbol' }} </td>
+                        </tr>
+                   </tbody>
+                    <tfoot>
+                        <tr class="text-center">
+                            <th class="align-middle text-left" scope="col" colspan="5"> Totales </th>
+                            <th class="align-middle text-success" scope="col"> <h4> {{totalIncomes | currency:_util.getDataUser('currency_symbol'):'symbol' }} </h4></th>
+                            <th class="align-middle text-danger" scope="col">  <h4> {{totalExpenses | currency:_util.getDataUser('currency_symbol'):'symbol' }} </h4></th>
+                        </tr>
+                        <tr class="text-center">
+                            <th class="align-middle text-left" scope="col" colspan="6"> Dinero en reserva </th>
+                            <th class="align-middle text-warning" scope="col">  <h4> {{ totalExpensesNotEffect | currency:_util.getDataUser('currency_symbol'):'symbol' }} </h4></th>
+                        </tr>                        
+                        <tr class="text-center">
+                            <th class="align-middle text-left" scope="col" colspan="6"> Sobrante </th>
+                            <th class="align-middle text-success" scope="col">  <h4> {{(totalIncomes - totalExpenses) | currency:_util.getDataUser('currency_symbol'):'symbol' }} </h4></th>
+                        </tr>
+                        <tr class="text-center">
+                            <th class="align-middle text-left" scope="col" colspan="6"> Dinero en Existencia </th>
+                            <th class="align-middle" scope="col">  <h4> {{(totalIncomes - totalExpensesEffect) | currency:_util.getDataUser('currency_symbol'):'symbol' }} </h4></th>
+                        </tr>
+                    </tfoot>
+              </table>
+        </div>
+      </div>
+
+      <ng-template #loading>
+          <div class="card-body is-loading is-loading-lg"></div>
+      </ng-template>
+    </div>
+  </div>

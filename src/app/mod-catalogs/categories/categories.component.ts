@@ -32,7 +32,7 @@ export class CategoriesComponent implements OnInit {
     this._modelHeader = new modelHeader("Catalogos", "Categorias", "Listado de categorias personales.", 
                         new buttonHeader(true, "Crear nueva categoria", "dark"));
 
-    this._settings = new settingsDataTable("Listado de categorias", "Se muestran todas las categorias personales.", "dark");
+    this._settings = new settingsDataTable("Listado de categorias", "Se muestran todas las categorias personales.", "dark", "category");
     this._nameItems = new Array<tableNames>();
     this._nameItems.push( 
         new tableNames('name', 'Nombre', 'name'), 

@@ -1,0 +1,74 @@
+<div>
+    <div class="card">
+        <img class="card-img-top" src="../../../../assets/fixed-icome.jpg" height="150" alt="Card image cap">
+        <div class="card-header bg-dark">
+            <div class="row">
+              <h2 class="card-header-title text-white">Consultar el historial de pagos</h2>
+            </div>
+        </div>
+        <div class="card-img-overlay text-right">
+            <div class="btn-group-vertical col-sm-3">
+              <button type="button" class="btn btn-warning shadow" (click)="return()"> <i class="fa fa-long-arrow-alt-left"></i> Regresar</button>
+            </div>
+        </div>
+        <div class="card-body" style="z-index: 2">
+              <form [formGroup]="formSearchCC" (submit)="formSearchCCSubmit()">
+                   <div class="form-row">
+                        <div class="form-group col-md-3">
+                             <label title="Selecione una tarjeta"><i class="fa fa-credit-card hover"></i> Tarjeta</label>
+                             <select formControlName="idCC" class="form-control" [class.is-invalid]="_util.getError(formSearchCC.controls.idCC)">
+                                  <option [value]="cc.id" *ngFor="let cc of (listCC$ | async)?.body"> {{cc.number}} | {{cc.issuer}} </option>
+                             </select>
+                             <message-error [control]="formSearchCC.controls.idCC" ></message-error>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label title="Selecione una tarjeta"><i class="fa fa-calendar-alt"></i> Fecha de inicio</label>
+                            <input type="date" formControlName="dateStart" class="form-control">
+                            <message-error [control]="formSearchCC.controls.dateStart" ></message-error>
+                       </div>
+                       <div class="form-group col-md-3">
+                          <label title="Selecione una tarjeta"><i class="fa fa-calendar-alt"></i> Fecha fin</label>
+                          <input type="date" formControlName="dateEnd" class="form-control">
+                          <message-error [control]="formSearchCC.controls.dateEnd" ></message-error>
+                      </div>
+                      <div class="form-group col-md-3">
+                            <label> &nbsp; </label>
+                            <button type="submit" class="btn btn-primary btn-block" [disabled]="!formSearchCC.valid" ><i class="fa fa-search"></i> Consultar </button>
+                      </div>
+                   </div>
+              </form>
+
+              <div *ngIf="view">
+                  <br> <hr> <br>
+                  <h3>Detalle</h3>
+                  <div class="row" *ngIf="isLoaded; else loading">
+                    <!-- <div class="col-md-2"></div> -->
+                    <div class="col-md-12">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th class="text-center" scope="col">#</th>
+                            <th class="text-center" scope="col">Fecha</th>
+                            <th class="text-center" scope="col">Monto del pago</th>
+                            <th class="text-center" scope="col">Comentario</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let hp of listHistoryPaymentCC; let i=index">
+                            <td class="text-left" scope="row"> {{i+1}} </td>
+                            <td class="text-center"> {{hp.created_at}} </td>
+                            <td class="text-right"> {{hp.paid_amount | currency:_util.getDataUser('currency_symbol'):'symbol' }}</td>
+                            <td class="text-left"> {{hp.comment}} </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <ng-template #loading>
+                      <div class="is-loading is-loading-lg"></div>
+                  </ng-template>
+              </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from '@angular/core';
 import { tableNames, typeDataTable, settingsDataTable } from '../../data-models/data-table';
 import { UtilService } from '../../utilities/util.service';
+import { Icons } from 'src/app/data-models/icons';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'data-table',
@@ -18,6 +20,8 @@ export class DataTableComponent implements OnInit, OnChanges {
   tmpArray: any[];
   pagArray: any[];
   sortColumn: sortColumn;
+  _dataIcon;
+  _icons: Icons;
   _typeDataTable: typeDataTable;
   _countNames: number;
   _countArray: number;
@@ -26,10 +30,11 @@ export class DataTableComponent implements OnInit, OnChanges {
   _pager: any = {}; /* pager object */
   _pageSize: string = '10';
 
-  constructor(public _util: UtilService){
+  constructor(public _util: UtilService, private sanitizer: DomSanitizer){
     this.sortColumn = new sortColumn();
     this._typeDataTable = new typeDataTable();
     this._pagination = new Pagintation();
+    this._icons = new Icons();
   }
 
   ngOnInit(){ }
@@ -46,6 +51,7 @@ export class DataTableComponent implements OnInit, OnChanges {
       this._countNames = this.names.length;
       this._countArray = this.tmpArray.length;
       this.setPagination(1);
+      this._dataIcon= this.sanitizer.bypassSecurityTrustResourceUrl(this._icons.getIconType()+this._icons.getIconData(this._settings.typeIcon));
     }
   }
 

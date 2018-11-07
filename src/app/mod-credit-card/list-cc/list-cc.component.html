@@ -1,0 +1,9 @@
+<data-table 
+  [names]="_nameItems" 
+  [array]="_listItems"
+  [settings]="_settings"
+  (details)="detailsCC($event)"
+  (edit)="editCC($event)"
+  (delete)="confirmationBeforeDelete($event)"
+></data-table>
+<confirmation-delete #confirmationDelete (delete)="deleteCC($event)"></confirmation-delete>

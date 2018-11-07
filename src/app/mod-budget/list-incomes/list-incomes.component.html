@@ -1,0 +1,49 @@
+<div *ngIf="listIncomes; else loading">
+    <div class="card">
+      <div class="card-header bg-dark">
+          <div class="row">
+            <h2 class="card-header-title text-white">Ingresos del mes</h2>
+          </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-sm">
+            <thead>
+              <tr class="text-center">
+                <th class="align-middle" scope="col">#</th>
+                <th class="align-middle" scope="col">Fecha de Creación</th>
+                <th class="align-middle" scope="col">Nombre</th>
+                <th class="align-middle" scope="col">Descripción</th>
+                <th class="align-middle" scope="col">Monto</th>
+                <th class="align-middle" scope="col">Nombre de la cuenta</th>
+                <th class="align-middle" scope="col">Categoria</th>
+                <th class="align-middle" scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let in of (listIncomes | async)?.body; let i=index">
+                <th scope="row"> {{i+1}} </th>
+                <td> {{in.created_at}} </td>
+                <td> {{in.name}} </td>
+                <td> {{in.description}} </td>
+                <td> {{in.amount | currency:_util.getDataUser('currency_symbol'):'symbol' }} </td>
+                <td> {{in.account_name}} </td>
+                <td> {{in.category_name}} </td>
+                <td> 
+                  <div class="btn-group btn-group-sm" role="group" aria-label="Acciones">
+                    <button type="button" class="btn btn-dark" (click)="editIncome(in.id)"> <i class="fa fa-edit"></i> </button>
+                    <button type="button" class="btn btn-danger" (click)="confirmationBeforeDelete(in)"> <i class="fa fa-trash"></i> </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <confirmation-delete #confirmationDelete (delete)="deleteIncome($event)"></confirmation-delete>
+  
+  <ng-template #loading>
+      <div class="card-body is-loading is-loading-lg"></div>
+  </ng-template>

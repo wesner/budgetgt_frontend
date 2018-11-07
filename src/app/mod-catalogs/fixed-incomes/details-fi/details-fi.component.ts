@@ -19,7 +19,7 @@ export class DetailsFiComponent implements OnInit {
     private _http: HttpService,
     public _util: UtilService,
     private _route: ActivatedRoute,
-    private _router: Router    
+    private _router: Router
   ){}
 
   ngOnInit(){

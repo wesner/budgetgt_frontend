@@ -1,0 +1,138 @@
+<div *ngIf="!isLoaded; else loading">
+  <div class="card">
+      <img class="card-img-top" src="../../../../assets/fixed-icome.jpg" height="150" alt="Card image cap">
+      <div class="card-header bg-dark">
+          <div class="row">
+            <h2 *ngIf="isNew" class="card-header-title text-white">Creación de una nueva tarjeta de crédito</h2>
+            <h2 *ngIf="!isNew" class="card-header-title text-white">Edición de una tarjeta de crédito</h2>
+          </div>
+      </div>
+      <div class="card-img-overlay text-right">
+          <div class="btn-group-vertical col-sm-3">
+            <button type="button" class="btn btn-warning shadow" (click)="return()"> <i class="fa fa-long-arrow-alt-left"></i> Regresar</button>
+          </div>
+      </div>
+      <div class="card-body" style="z-index: 2">
+        <form class="form p-5" [formGroup]="formData" (submit)="formDataSubmit()">
+            <div class="form-row">
+                  <div class="form-group col-md-6" [class.d-none]="isNew">
+                      <label>
+                            <i class="fa fa-info-circle _popover hover" title="Fecha de creación" data-content="Fecha y hora exacta en la se creo el registro."></i>
+                            Fecha de creación
+                      </label>
+                      <input type="text" [disableControl]="true" formControlName="create_at" class="form-control " placeholder="YYY-MM-DD HH:MM:SS">
+                      <message-error [control]="formData.controls.create_at" ></message-error>
+                  </div>
+
+                  <div class="form-group col-md-6"  [class.d-none]="isNew">
+                      <label>
+                            <i class="fa fa-info-circle _popover hover" title="Fecha de actualización" data-content="Fecha y hora exacta de la última vez que actualizaste el registro."></i>
+                            Fecha de la última actualización
+                      </label>
+                      <input type="text" [disableControl]="true" formControlName="update_at" class="form-control " placeholder="YYY-MM-DD HH:MM:SS">
+                      <message-error [control]="formData.controls.update_at" ></message-error>
+                  </div>
+            </div>
+
+            <div class="form-group">
+                <label>
+                      <i class="fa fa-info-circle _popover hover" title="Nombre de la tarjeta" data-content="Este nombre lo puedes asignar segun el banco, emisor o el nombre con el cual la tarjeta viene."></i>
+                      Nombre de la tarjeta
+                </label>
+                <input type="text" formControlName="name" class="form-control " [class.is-invalid]="_util.getError(formData.controls.name)" placeholder="Nombre de la tarjeta">
+                <message-error [control]="formData.controls.name" ></message-error>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6 required">
+                    <label>
+                        <i class="fa fa-info-circle _popover hover" title="Número de tarjeta" data-content="Este es el número de tu tarjeta, puede ingresarlo con guiones o escribir el número alrevez para tu seguridad o insertar numeros intermedios u omitir números."></i>
+                        Número de tarjeta
+                    </label>
+                    <input type="text" formControlName="number" class="form-control" [class.is-invalid]="_util.getError(formData.controls.number)" placeholder="#### #### #### ####">
+                    <message-error [control]="formData.controls.number" ></message-error>
+              </div>
+
+              <div class="form-group col-md-6">
+                <label>
+                    <i class="fa fa-info-circle _popover hover" title="Emisor" data-content="Este emisor puede ser [Visa, American Express, Master Card, Etc...]"></i>
+                    Emisor
+                </label>
+                <input type="text" formControlName="issuer" class="form-control" [class.is-invalid]="_util.getError(formData.controls.issuer)" placeholder="Emisor de tu tarjeta">
+                <message-error [control]="formData.controls.issuer" ></message-error>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6 required">
+                  <label>
+                      <i class="fa fa-info-circle _popover hover" title="Límite de gasto" data-content="Este es el monto máximo autorizado para que gastes con tu tarjeta."></i>
+                      Monto límite de crédito
+                  </label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"> {{ _util.getDataUser('currency_symbol') }} </span>
+                    </div>
+                    <input type="text" formControlName="credit_limit" class="form-control" [class.is-invalid]="_util.getError(formData.controls.credit_limit)" placeholder="00.00">
+                  </div>
+                  <message-error [control]="formData.controls.credit_limit" ></message-error>
+              </div>
+
+              <div class="form-group col-md-6 required">
+                <label>
+                    <i class="fa fa-info-circle _popover hover" title="Saldo disponible" data-content="Este valor ira cambiando segun el uso que le des a la tarjeta."></i>
+                    Saldo disponible actual
+                </label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"> {{ _util.getDataUser('currency_symbol') }} </span>
+                  </div>
+                  <input type="text" formControlName="balance" class="form-control" [class.is-invalid]="_util.getError(formData.controls.balance)" placeholder="00.00" (blur)="validationMoreThat()">
+                </div>
+                <message-error [control]="formData.controls.balance" ></message-error>
+                <div *ngIf="formData.controls.balance.getError('moreThat')" class="invalid-feedback">El <b>Saldo disponible actual</b> no puede ser mayor al Monto límite de crédito</div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6 required">
+                  <label>
+                    <i class="fa fa-info-circle _popover hover" title="Día de corte" data-content="Este es el día en que se realiza el corte a tu tarjeta."></i>
+                    Día de corte
+                  </label>
+                  <select formControlName="cutoff_day" class="form-control" [class.is-invalid]="_util.getError(formData.controls.cutoff_day)">
+                    <option [value]="d" *ngFor="let d of listDays"> {{d}} </option>
+                  </select>
+                  <message-error [control]="formData.controls.cutoff_day" ></message-error>
+              </div>
+
+              <div class="form-group col-md-6 required">
+                  <label>
+                    <i class="fa fa-info-circle _popover hover" title="Día de pago" data-content="Este el día en que debes realizar tu pago de tarjeta."></i>
+                    Día de pago
+                  </label>
+                  <select formControlName="payment_day" class="form-control" [class.is-invalid]="_util.getError(formData.controls.payment_day)">
+                    <option [value]="d" *ngFor="let d of listDays"> {{d}} </option>
+                  </select>
+                  <message-error [control]="formData.controls.payment_day" ></message-error>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="text-right" style="width: 100%;">
+                <button type="button" class="btn btn-dark " (click)="return()"> <i class="fa fa-minus-circle"></i> Cancelar</button> &nbsp;
+                <button type="submit" class="btn btn-primary" [disabled]="!formData.valid" ><i class="fa fa-save"></i> 
+                  <span *ngIf="isNew"> Crear Tarjeta </span>
+                  <span *ngIf="!isNew"> Guardar cambios</span>
+                </button>
+              </div>
+            </div>
+        </form>
+      </div>
+  </div>
+
+<bud-alert [data]="_error"></bud-alert>
+</div>
+<ng-template #loading>
+<div class="card-body is-loading is-loading-lg"></div>
+</ng-template>

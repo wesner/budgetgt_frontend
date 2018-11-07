@@ -1,10 +1,9 @@
-import { User } from "./user";
-
 /**
  * @author Wesner
  * @version 1.0.0.0
  * @description modelos de datos para los catálogos de la aplicación 
- */
+*/
+import { User } from "./user";
 
 export class Country{
     public id: number = 0;
@@ -25,7 +24,6 @@ export class Country{
         }
     }
 }
-
 
 export class Account{
   public id: number = 0;
@@ -57,7 +55,6 @@ export class Account{
   }
 }
 
-
 export class Category{
   constructor(
     public id: number = 0,
@@ -80,7 +77,28 @@ export class FixedIncome{
     public amount: number=0,
     public payday: number=0,
     public account_fk: number=0,
-    public category_fk: number=0,
+    public category_fk: number=1,
+    public periodicity_fk: number=0,
+    public create_at: string="",
+    public update_at: string="",
+    public periodicity?:Periodicity,
+    public account?:Account,
+    public category?:Category,
+    public user?:User
+  ){}
+}
+
+export class FixedExpense{
+  constructor(
+    public id: number=0,
+    public user_fk: number=0,
+    public name: string="",
+    public description: string="",
+    public amount: number=0,
+    public automatic_payday: number=0,
+    public automatic_payment: boolean=false,
+    public account_fk: number=0,
+    public category_fk: number=1,
     public periodicity_fk: number=0,
     public create_at: string="",
     public update_at: string="",

@@ -27,7 +27,7 @@ export class ListFIComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router
   ){
-    this._settings = new settingsDataTable("Listado de ingresos fijos", "Se muestran todos las ingresos fijos personales.", "success");
+    this._settings = new settingsDataTable("Listado de ingresos fijos", "Se muestran todos las ingresos fijos personales.", "success", "fixedIncome");
     this._nameItems = new Array<tableNames>();
     this._nameItems.push( 
         new tableNames('name', 'Nombre', 'name'), 
@@ -35,7 +35,7 @@ export class ListFIComponent implements OnInit {
         new tableNames('amount', 'Monto', 'currency'),
         new tableNames('create_at', 'Fecha de creación', 'general'),
         new tableNames('update_at', 'Fecha de actualización', 'general')
-    );    
+    );
   }
 
   ngOnInit(){

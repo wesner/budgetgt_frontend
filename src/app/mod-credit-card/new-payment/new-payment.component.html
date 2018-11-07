@@ -1,0 +1,102 @@
+<div>
+          <div class="card">
+              <img class="card-img-top" src="../../../../assets/fixed-icome.jpg" height="150" alt="Card image cap">
+              <div class="card-header bg-dark">
+                  <div class="row">
+                    <h2 class="card-header-title text-white">Hacer pago a una tarjeta de crédito</h2>
+                  </div>
+              </div>
+              <div class="card-img-overlay text-right">
+                  <div class="btn-group-vertical col-sm-3">
+                    <button type="button" class="btn btn-warning shadow" (click)="return()"> <i class="fa fa-long-arrow-alt-left"></i> Regresar</button>
+                  </div>
+              </div>
+              <div class="card-body" style="z-index: 2">
+                    <form [formGroup]="formSearchCC" (submit)="formSearchCCSubmit()">
+                         <div class="form-row">
+                              <div class="form-group col-md-8">
+                                   <label title="Selecione una tarjeta"><i class="fa fa-credit-card hover"></i> Seleccione una tarjeta para consultar</label>
+                                   <select formControlName="idCC" class="form-control" [class.is-invalid]="_util.getError(formSearchCC.controls.idCC)">
+                                        <option [value]="cc.id" *ngFor="let cc of (listCC$ | async)?.body"> {{cc.number}} | {{cc.issuer}} </option>
+                                   </select>
+                                   <message-error [control]="formSearchCC.controls.idCC" ></message-error>
+                              </div>
+                              <div class="form-group col-md-4">
+                                   <label> &nbsp; </label>
+                                   <button type="submit" class="btn btn-primary btn-block" [disabled]="!formSearchCC.valid" ><i class="fa fa-search"></i> Consultar </button>
+                              </div>
+                         </div>
+                    </form>
+
+                    <div *ngIf="view">
+                         <div *ngIf="isLoaded; else loading">
+                              <br> <hr> <br>
+                              <h3>Formulario de pago</h3>
+                              <form [formGroup]="formPaymentCC" (submit)="formPaymentCCSubmit()" class="border rounded p-4">
+                                   <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label font-weight-bold">Nombre</label>
+                                        <div class="col-sm-8">
+                                             <input type="text" class="form-control" formControlName="name">
+                                             <message-error [control]="formPaymentCC.controls.name" ></message-error>
+                                        </div>
+                                   </div>
+
+                                   <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label font-weight-bold">Número de tarjeta</label>
+                                        <div class="col-sm-8">
+                                             <input type="text" class="form-control" formControlName="number">
+                                             <message-error [control]="formPaymentCC.controls.number" ></message-error>
+                                        </div>
+                                   </div>
+
+                                   <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label font-weight-bold">Monto adeudado</label>
+                                        <div class="col-sm-8">
+                                             <div class="input-group">
+                                                  <div class="input-group-prepend">
+                                                       <span class="input-group-text"> {{ _util.getDataUser('currency_symbol') }} </span>
+                                                  </div>
+                                                  <input type="text" class="form-control" formControlName="amount_owed" placeholder="00.00">
+                                             </div>
+                                             <message-error [control]="formPaymentCC.controls.amount_owed" ></message-error>
+                                        </div>
+                                   </div>
+
+                                   <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label font-weight-bold">Ingrese el monto del pago</label>
+                                        <div class="col-sm-8">
+                                             <div class="input-group">
+                                                  <div class="input-group-prepend">
+                                                       <span class="input-group-text"> {{ _util.getDataUser('currency_symbol') }} </span>
+                                                  </div>
+                                                  <input type="number" class="form-control" formControlName="amonut_payment" placeholder="00.00" (keyup)="validationMoreThat()">
+                                             </div>
+                                             <message-error [control]="formPaymentCC.controls.amonut_payment" ></message-error>
+                                             <div *ngIf="formPaymentCC.controls.amonut_payment.getError('moreThat')" class="invalid-feedback">El <b>Monto del pago</b> no puede ser mayor al Monto adeudado</div>                                             
+                                        </div>
+                                   </div>
+
+                                   <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label font-weight-bold">Comentario de pago</label>
+                                        <div class="col-sm-8">
+                                             <input type="text" class="form-control" formControlName="comment" placeholder="Comentario de pago">
+                                             <message-error [control]="formPaymentCC.controls.comment" ></message-error>
+                                        </div>
+                                   </div>
+
+                                   <div class="form-group row">
+                                        <div class="col-sm-4"></div>
+                                        <div class="col-sm-8">
+                                             <button type="submit" class="btn btn-primary btn-block" [disabled]="!formPaymentCC.valid" ><i class="fa fa-save"></i> Realizar pago </button>
+                                        </div>
+                                   </div>
+                              </form>
+                         </div>
+
+                         <ng-template #loading>
+                              <div class="is-loading is-loading-lg"></div>
+                         </ng-template>
+                    </div>
+              </div>
+          </div>
+</div>

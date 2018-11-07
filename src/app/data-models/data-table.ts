@@ -39,5 +39,6 @@ export class settingsDataTable{
     public title: string = "",
     public subtitle: string = "",
     public color: string = "",
+    public typeIcon: string="" //account, category, fixedExpense, fixedIncome, creditCard, debt, income, expense
   ){}
 }

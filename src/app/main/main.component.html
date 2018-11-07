@@ -6,10 +6,10 @@
 
             <ul class="navbar-nav ml-auto navbar-collapse collapse">
                 <li class="nav-item">
-                    <a  class="btn btn-link d-md-down-none text-success"> <i class="fa fa-plus-circle"></i> Ingreso </a>
+                    <a  class="btn btn-link d-md-down-none text-success" routerLink="/main/budget/new-income"> <i class="fa fa-plus-circle"></i> Ingreso </a>
                 </li>
                 <li class="nav-item">
-                    <a  class="btn btn-link d-md-down-none text-danger"> <i class="fa fa-plus-circle"></i> Egreso </a>
+                    <a  class="btn btn-link d-md-down-none text-danger" routerLink="/main/budget/new-expense"> <i class="fa fa-plus-circle"></i> Egreso </a>
                 </li>
 
                 <li class="nav-item dropdown text-white">
@@ -38,34 +38,34 @@
                     <ul class="nav">
                         <li class="nav-title d-sm-block d-md-block d-lg-none d-xl-none">accesos</li>
                         <li class="nav-item d-sm-block d-md-block d-lg-none d-xl-none">
-                            <a  class="nav-link text-success"> <i class="fa fa-plus-circle text-success"></i> Ingreso </a>
+                            <a  class="nav-link text-success" routerLink="/main/budget/new-income"> <i class="fa fa-plus-circle text-success"></i> Ingreso </a>
                         </li>
                         <li class="nav-item d-sm-block d-md-block d-lg-none d-xl-none">
-                            <a  class="nav-link text-danger"> <i class="fa fa-plus-circle text-danger"></i> Egreso </a>
+                            <a  class="nav-link text-danger" routerLink="/main/budget/new-expense"> <i class="fa fa-plus-circle text-danger"></i> Egreso </a>
                         </li>
                         <li class="nav-item d-sm-block d-md-block d-lg-none d-xl-none"> <hr class="my-3"> </li>
 
                         <li class="nav-title">configuraciones</li>
                         <li class="nav-item nav-dropdown">
                             <a  class="nav-link nav-dropdown-toggle">
-                                <i class="icon icon-energy"></i> Cuenta <i class="fa fa-angle-down"></i>
+                                <i class=" fa fa-user-circle"></i> Cuenta <i class="fa fa-angle-down"></i>
                             </a>
 
                             <ul class="nav-dropdown-items bg-light">
                                 <li class="nav-item">
                                     <a class="nav-link" routerLink="/main/account/profile">
-                                        <i class="icon icon-energy"></i> Perfil
+                                        <i class=" fa fa-user"></i> Perfil
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a  class="nav-link" routerLink="/main/account/change-password">
-                                        <i class="icon icon-energy"></i> Cambiar contraseña
+                                        <i class=" fa fa-unlock-alt"></i> Cambiar contraseña
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
                                     <a class="nav-link" routerLink="/main/account/delete-account">
-                                        <i class="icon icon-energy"></i> Borrar cuenta
+                                        <i class=" fa fa-trash"></i> Borrar cuenta
                                     </a>
                                 </li>
                             </ul>
@@ -73,112 +73,144 @@
                         <li class="nav-item"> <hr class="my-3"> </li>
                         <li class="nav-title">dashboard</li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="icon icon-speedometer"></i> Dashboard
+                            <a routerLink="/main/dashboard" class="nav-link">
+                                <i class="fa fa-tachometer-alt"></i> Dashboard
                             </a>
                         </li>
 
                         <li class="nav-item"> <hr class="my-3"> </li>
                         <li class="nav-title">presupuestos</li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="icon icon-speedometer"></i> Presupuestos
+                        <li class="nav-item nav-dropdown">
+                            <a  class="nav-link nav-dropdown-toggle">
+                                <i class="fa fa-book"></i> Presupuesto <i class="fa fa-angle-down"></i>
                             </a>
+
+                            <ul class="nav-dropdown-items bg-light">
+                                <li class="nav-item">
+                                    <a class="nav-link" routerLink="/main/budget/balance">
+                                        <i class="fa fa-chart-pie"></i> Ver Balance
+                                    </a>
+                                </li>
+                                <li class="nav-item text-success">
+                                    <a class="nav-link text-success" routerLink="/main/budget/new-income">
+                                        <i class="fa fa-arrow-down text-success"></i> Nuevo Ingreso
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" routerLink="/main/budget/list-incomes">
+                                        <i class="fa fa-list"></i> Listado de Ingresos
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" routerLink="/main/budget/history-incomes">
+                                        <i class="fa fa-history"></i> Historial de Ingresos
+                                    </a>
+                                </li>
+                                <li class="nav-item text-danger">
+                                    <a class="nav-link text-danger" routerLink="/main/budget/new-expense">
+                                        <i class="fa fa-arrow-up text-danger"></i> Nuevo Egreso
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" routerLink="/main/budget/list-expenses">
+                                        <i class="fa fa-list"></i> Listado de Egresos
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" routerLink="/main/budget/history-expenses">
+                                        <i class="fa fa-history"></i> Historial de Egresos
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
 
                         <li class="nav-item"> <hr class="my-3"> </li>
                         <li class="nav-title">general</li>
                         <li class="nav-item nav-dropdown">
                             <a  class="nav-link nav-dropdown-toggle">
-                                <i class="icon icon-energy"></i> Catálogos <i class="fa fa-angle-down"></i>
+                                <i class=" fa fa-th-large"></i> Catálogos <i class="fa fa-angle-down"></i>
                             </a>
 
                             <ul class="nav-dropdown-items bg-light">
                                 <li class="nav-item">
                                     <a class="nav-link" routerLink="/main/catalogs/accounts/">
-                                        <i class="icon icon-energy"></i> Cuentas
+                                        <i class=" fa fa-archive"></i> Cuentas
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" routerLink="/main/catalogs/categories/">
-                                        <i class="icon icon-energy"></i> Categorias
+                                        <i class=" fa fa-bars"></i> Categorias
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a  class="nav-link" routerLink="/main/catalogs/fixed-incomes/list">
-                                        <i class="icon icon-energy"></i> Ingresos Fijos
+                                        <i class=" fa fa-arrow-down"></i> Ingresos Fijos
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" routerLink="/main/catalogs/fixed-expenses/">
-                                        <i class="icon icon-energy"></i> Egresos fijos
+                                    <a class="nav-link" routerLink="/main/catalogs/fixed-expenses/list">
+                                        <i class=" fa fa-arrow-up"></i> Egresos fijos
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="icon icon-speedometer"></i> Deudas
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="icon icon-speedometer"></i> Tarjetas de crédito
-                            </a>
-                        </li>
-
-                        <li class="nav-item"> <hr class="my-3"> </li>
-                        <li class="nav-title">reportes</li>
                         <li class="nav-item nav-dropdown">
                             <a  class="nav-link nav-dropdown-toggle">
-                                <i class="icon icon-energy"></i> Listado de reportes <i class="fa fa-angle-down"></i>
+                                <i class=" fa fa-credit-card"></i> Tarjetas de crédito <i class="fa fa-angle-down"></i>
                             </a>
 
                             <ul class="nav-dropdown-items bg-light">
                                 <li class="nav-item">
-                                    <a  class="nav-link">
-                                        <i class="icon icon-energy"></i> Alerts
+                                    <a class="nav-link" routerLink="/main/credit-cards/list">
+                                        <i class=" fa fa-list"></i> Listado de tarjetas
                                     </a>
                                 </li>
-
                                 <li class="nav-item">
-                                    <a href="buttons.html" class="nav-link">
-                                        <i class="icon icon-energy"></i> Buttons
+                                    <a class="nav-link" routerLink="/main/credit-cards/new">
+                                        <i class=" fa fa-plus"></i> Crear tarjeta
                                     </a>
                                 </li>
-
                                 <li class="nav-item">
-                                    <a href="cards.html" class="nav-link">
-                                        <i class="icon icon-energy"></i> Cards
+                                    <a class="nav-link" routerLink="/main/credit-cards/payment-new">
+                                        <i class=" fa fa-money-bill-alt"></i> Realizar pago
                                     </a>
                                 </li>
-
                                 <li class="nav-item">
-                                    <a href="modals.html" class="nav-link">
-                                        <i class="icon icon-energy"></i> Modals
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="tabs.html" class="nav-link">
-                                        <i class="icon icon-energy"></i> Tabs
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="progress-bars.html" class="nav-link">
-                                        <i class="icon icon-energy"></i> Progress Bars
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="widgets.html" class="nav-link">
-                                        <i class="icon icon-energy"></i> Widgets
+                                    <a class="nav-link" routerLink="/main/credit-cards/payment-history">
+                                        <i class=" fa fa-history"></i> Historial de pago
                                     </a>
                                 </li>
                             </ul>
                         </li>
+                        <!-- <li class="nav-item nav-dropdown">
+                            <a  class="nav-link nav-dropdown-toggle">
+                                <i class=" fa fa-chart-line"></i> Deudas <i class="fa fa-angle-down"></i>
+                            </a>
+
+                            <ul class="nav-dropdown-items bg-light">
+                                <li class="nav-item">
+                                    <a class="nav-link" routerLink="/main/debts/list">
+                                        <i class=" fa fa-list"></i> Listado de deudas
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" routerLink="/main/debts/new">
+                                        <i class=" fa fa-plus"></i> Crear deuda
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" routerLink="/main/debts/payment-new">
+                                        <i class=" fa fa-money-bill-alt"></i> Realizar pago
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" routerLink="/main/debts/payment-history">
+                                        <i class=" fa fa-history"></i> Historial de pago
+                                    </a>
+                                </li>
+                            </ul>
+                        </li> -->
                     </ul>
                 </nav>
             </div>

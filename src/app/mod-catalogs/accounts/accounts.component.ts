@@ -37,7 +37,7 @@ export class AccountsComponent implements OnInit {
                         new buttonHeader(true, "Crear nueva cuenta", "dark"));
     this._dataModal = new modelModalForm("new");
 
-    this._settings = new settingsDataTable("Listado de cuentas", "Se muestran todas las cuentas activas/inactivas", "dark");
+    this._settings = new settingsDataTable("Listado de cuentas", "Se muestran todas las cuentas activas/inactivas", "dark", "account");
     this._nameItems = new Array<tableNames>();
     this._nameItems.push( 
         new tableNames('name', 'Nombre', 'name'), 

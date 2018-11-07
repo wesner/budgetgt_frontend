@@ -1,0 +1,59 @@
+<div *ngIf="listExpenses; else loading">
+  <div class="card">
+    <div class="card-header bg-dark">
+        <div class="row">
+          <h2 class="card-header-title text-white">Egresos del mes</h2>
+        </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr class="text-center">
+              <th class="align-middle" scope="col">#</th>
+              <th class="align-middle" scope="col">Fecha de Creación</th>
+              <th class="align-middle" scope="col">Nombre</th>
+              <th class="align-middle" scope="col">Descripción</th>
+              <th class="align-middle" scope="col">Forma de pago</th>
+              <th class="align-middle" scope="col">Monto</th>
+              <th class="align-middle" scope="col">Nombre de la cuenta</th>
+              <th class="align-middle" scope="col">Día de pago</th>
+              <th class="align-middle" scope="col">Categoria</th>
+              <th class="align-middle" scope="col">Tarjeta de crédito</th>
+              <th class="align-middle" scope="col">Efectuado</th>
+              <th class="align-middle" scope="col">No de documento</th>
+              <th class="align-middle" scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ex of (listExpenses | async)?.body; let i=index">
+              <th scope="row"> {{i+1}} </th>
+              <td> {{ex.created_at}} </td>
+              <td> {{ex.expense_name}} </td>
+              <td> {{ex.expense_description}} </td>
+              <td> {{ex.type_payment_name}} </td>
+              <td> {{ ex.expense_amount | currency:_util.getDataUser('currency_symbol'):'symbol' }} </td>
+              <td> {{ex.account_name}} </td>
+              <td> {{ex.expense_payday}} </td>
+              <td> {{ex.category_name}} </td>
+              <td> {{ex.credit_card_number}} </td>
+              <td> {{ ex.expense_effected?'Sí':'No'}} </td>
+              <td> {{ex.expense_no_document}} </td>
+              <td> 
+                <div class="btn-group btn-group-sm" role="group" aria-label="Acciones">
+                  <button type="button" class="btn btn-dark" (click)="editExpense(ex.id)"> <i class="fa fa-edit"></i> </button>
+                  <button type="button" class="btn btn-danger" (click)="confirmationBeforeDelete(ex)"> <i class="fa fa-trash"></i> </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<confirmation-delete #confirmationDelete (delete)="deleteExpense($event)"></confirmation-delete>
+
+<ng-template #loading>
+    <div class="card-body is-loading is-loading-lg"></div>
+</ng-template>
